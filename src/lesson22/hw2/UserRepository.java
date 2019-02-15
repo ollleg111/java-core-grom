@@ -6,14 +6,14 @@ import lesson22.hw2.exception.UserNotFoundException;
 
 public class UserRepository {
 
-    //private User[] users = new User[10];
+    private static User[] users = new User[10];
 
-    public User save(User user) throws Exception {
+    public static User save(User user) throws Exception {
         if (user == null)
             throw new BadRequestException("Can't save null user");
 
         try {
-            findById(user.getId());
+            findById(User.getId());
             throw new BadRequestException("User with id: " + user.getId() + " already exist");
         } catch (UserNotFoundException e) {
             System.out.println("User with id: " + user.getId() + "not found. Will be saved");
@@ -30,11 +30,11 @@ public class UserRepository {
         throw new InternalServerException("Not enough space to save user with id " + user.getId());
     }
 
-    public User update(User user) throws Exception {
+    public static User update(User user) throws Exception {
         if (user == null)
             throw new BadRequestException("Can't update null user");
 
-        findById(user.getId());
+        findById(User.getId());
 
         int index = 0;
         for (User us : users) {
@@ -47,7 +47,7 @@ public class UserRepository {
         throw new InternalServerException("Unexpected error");
     }
 
-    public void delete(long id) throws Exception {
+    public static void delete(long id) throws Exception {
 
         findById(id);
 
@@ -61,7 +61,7 @@ public class UserRepository {
         }
     }
 
-    public User findById(long id) throws UserNotFoundException {
+    public static User findById(long id) throws UserNotFoundException {
         for (User user : users) {
             if (user != null && id == user.getId())
                 return user;
@@ -69,7 +69,7 @@ public class UserRepository {
         throw new UserNotFoundException("User with id: " + id + " not found");
     }
 
-    public User[] getUsers() {
+    public static User[] getUsers() {
         return users;
     }
 }
