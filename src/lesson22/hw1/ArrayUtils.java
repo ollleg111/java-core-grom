@@ -22,7 +22,7 @@ public class ArrayUtils {
         return count;
     }
 
-    static int[] sortAscending(int[] array) {
+    public static int[] sortAscending(int[] array) {
         for (int i = array.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (array[j] > array[j + 1]) {
@@ -35,7 +35,7 @@ public class ArrayUtils {
         return array;
     }
 
-    static int[] sortDescending(int[] array) {
+    public static int[] sortDescending(int[] array) {
         int temp;
         for (int i = 0; i < array.length; i++) {
             for (int k = i + 1; k < array.length; k++) {
