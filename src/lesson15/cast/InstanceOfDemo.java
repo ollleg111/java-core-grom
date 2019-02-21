@@ -13,11 +13,11 @@ public class InstanceOfDemo {
 
 
         if (test() instanceof InternetProvider) {
-//            System.out.println((InternetProvider) test());
+//            Sys.out.println((InternetProvider) test());
             System.out.println(test());
         } else {
             if (test() instanceof FoodProvider) {
-//                System.out.println((FoodProvider) test());
+//                Sys.out.println((FoodProvider) test());
                 System.out.println(test());
             }
         }

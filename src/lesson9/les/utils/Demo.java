@@ -6,16 +6,16 @@ public class Demo {
     public static void main(String[] args) {
 
         Company company = new Company("Oleg","UK");
-//        System.out.println(company.countryFounded);
-//        System.out.println(company.name);
+//        Sys.out.println(company.countryFounded);
+//        Sys.out.println(company.name);
         System.out.println(company.getName());
         System.out.println(company.getCountryFounded());
 
 //        company.name = "IBM";
 
 //        Checker checker = new Checker();
-//        System.out.println(checker.chechCompanyName(company.name));
-//        System.out.println(checker.companyNamesValidatedCount);
+//        Sys.out.println(checker.chechCompanyName(company.name));
+//        Sys.out.println(checker.companyNamesValidatedCount);
 
     }
 }

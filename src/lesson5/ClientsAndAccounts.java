@@ -44,8 +44,8 @@ public class ClientsAndAccounts {
 //        int counter = 0;
 //        for (int i = 0; i < cl.length; i++) {
 //            if (target == cl[i]) {
-//                System.out.println(cl);
-//                System.out.println(i);
+//                Sys.out.println(cl);
+//                Sys.out.println(i);
 //            }
 //            i=counter;
 //        }

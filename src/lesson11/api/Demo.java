@@ -96,16 +96,16 @@ public class Demo {
         controller001.requestRooms(100, 2,"a", "a");
         System.out.println("test     10");
 
-//        System.out.println(Arrays.toString(controller.requestRooms(100, 2,"Kiev", "Corona")));
+//        Sys.out.println(Arrays.toString(controller.requestRooms(100, 2,"Kiev", "Corona")));
 //        controller.check(new GoogleAPI(rooms),new TripAdvisorAPI(rooms));
-//        System.out.println(" ");
+//        Sys.out.println(" ");
 //        API bookingAPI = new BookingComAPI(rooms);
-//        System.out.println(Arrays.toString(bookingAPI.getAll()));
-//        System.out.println(" ");
+//        Sys.out.println(Arrays.toString(bookingAPI.getAll()));
+//        Sys.out.println(" ");
 //        API tripAdvisorAPI = new TripAdvisorAPI(rooms);
-//        System.out.println(Arrays.toString(tripAdvisorAPI.getAll()));
-//        System.out.println(" ");
+//        Sys.out.println(Arrays.toString(tripAdvisorAPI.getAll()));
+//        Sys.out.println(" ");
 //        API googleAPI = new GoogleAPI(rooms);
-//        System.out.println(Arrays.toString(googleAPI.getAll()));
+//        Sys.out.println(Arrays.toString(googleAPI.getAll()));
     }
 }

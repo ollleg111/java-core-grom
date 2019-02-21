@@ -9,9 +9,9 @@ public class SumOfNumbers {
     public static boolean compareSums(int a, int b, int c, int d) {
 
 //        int ab = sum(a,b);
-//        System.out.println(ab);
+//        Sys.out.println(ab);
 //        int cd = sum(c,d);
-//        System.out.println(cd);
+//        Sys.out.println(cd);
 //
 //        if(ab>cd) return true;
 //        else return false;

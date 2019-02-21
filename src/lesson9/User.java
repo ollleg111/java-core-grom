@@ -24,14 +24,14 @@ public class User {
 
 
         UserRepository userRepository = new UserRepository(users);
-//        System.out.println(Arrays.toString(userRepository.getUserNames()));
-//        System.out.println(Arrays.toString(userRepository.getUserIds()));
-//        System.out.println(userRepository.getUserNameById(23));
-//        System.out.println(userRepository.getUserByName("D"));
-//        System.out.println(userRepository.getUserById(25));
-//        System.out.println(userRepository.getUserBySessionId("abra"));
+//        Sys.out.println(Arrays.toString(userRepository.getUserNames()));
+//        Sys.out.println(Arrays.toString(userRepository.getUserIds()));
+//        Sys.out.println(userRepository.getUserNameById(23));
+//        Sys.out.println(userRepository.getUserByName("D"));
+//        Sys.out.println(userRepository.getUserById(25));
+//        Sys.out.println(userRepository.getUserBySessionId("abra"));
         System.out.println(userRepository.save(new User(90, "J", "abracadabra")));
-//        System.out.println(userRepository.update(new User(25, "EJJJ", "abrJFJGFHac")));
+//        Sys.out.println(userRepository.update(new User(25, "EJJJ", "abrJFJGFHac")));
 //        userRepository.delete(20);
 
     }

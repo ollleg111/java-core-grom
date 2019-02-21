@@ -15,7 +15,7 @@ public class EmployeeController {
                 newBalance += newBalance * 0.25;
                 employee.getBankAccount().setBalance(newBalance);
             }
-            System.out.println("Salary was paid successfully to " + employee.getName() + "employee");
+            Sys.out.println("Salary was paid successfully to " + employee.getName() + "employee");
         }
     }*/
 

@@ -19,7 +19,7 @@ public class Demo {
 
         System.out.println(file1 == someFile);
 
-//        System.out.println(file1.equals(someFile));
+//        Sys.out.println(file1.equals(someFile));
 
         User user = new User(1001);
         System.out.println(file1.equals(user));

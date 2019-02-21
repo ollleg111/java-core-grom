@@ -85,7 +85,7 @@ public class Controller {
 //                        roomLong.getCityName().equals(roomShort.getCityName())) {
 //                    result[index] = roomLong;
 //
-//                    System.out.println(index + " " + result[index].getId());
+//                    Sys.out.println(index + " " + result[index].getId());
 //                    index++;
 //                }
 //                secondCount++;
