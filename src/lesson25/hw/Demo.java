@@ -1,10 +1,5 @@
 package lesson25.hw;
 
-import lesson24.exercise.GeneralDAO;
-import lesson24.exercise.Order;
-import lesson24.exercise.Sys;
-import lesson24.exercise.Tool;
-
 import java.util.Arrays;
 
 public class Demo {
@@ -21,12 +16,32 @@ public class Demo {
         Integer a = 23;
         Double z = 24.6d;
 
-        integerGeneralDAO.save(i);
-        doubleGeneralDAO.save(b);
-        stringGeneralDAO.save(abc);
+        try {
+            integerGeneralDAO.save(i);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            doubleGeneralDAO.save(b);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            stringGeneralDAO.save(abc);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        integerGeneralDAO.save(a);
-        doubleGeneralDAO.save(z);
+        try {
+            integerGeneralDAO.save(a);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            doubleGeneralDAO.save(z);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.println(Arrays.toString(integerGeneralDAO.getAll()));
         System.out.println(Arrays.toString(doubleGeneralDAO.getAll()));
