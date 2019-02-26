@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class UserRepository {
 
-    private final ArrayList<User> users;
+    private ArrayList<User> users;
 
     public UserRepository(ArrayList<User> users) {
         this.users = users;
