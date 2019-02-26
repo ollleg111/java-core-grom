@@ -8,8 +8,8 @@ public class LinkedListTest {
         System.out.println(useList().toString());
     }
 
-    public static LinkedList<lesson27.hw.Order> useList() {
-        LinkedList<lesson27.hw.Order> list = new LinkedList<>();
+    public static LinkedList useList() {
+        LinkedList list = new LinkedList<>();
 
         Order order0 = new Order(100, 100, "UAH", "aaa", "a0");
         Order order1 = new Order(101, 100, "USD", "bbb", "a1");
