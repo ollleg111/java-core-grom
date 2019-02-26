@@ -10,7 +10,7 @@ public class UserRepository {
 
     public static User save(User user) throws Exception {
         if (user == null)
-            throw new BadRequestException("Can't save null user");
+            throw new NullPointerException("Can't save null user");
 
         try {
             findById(User.getId());

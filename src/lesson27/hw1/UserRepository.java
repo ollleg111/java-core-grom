@@ -4,86 +4,48 @@ import java.util.ArrayList;
 
 public class UserRepository {
 
-    private ArrayList<User> users = new ArrayList<>();
+    ArrayList<User> users = new ArrayList<>();
 
-    public User save(User user) {
-        if (user == null)
-            return null;
+    public User findById(long id) throws Exception {
 
-        if (findById(user.getId()) != null)
-            return null;
-//
-//        int countPlaced = 0;
-//        for (User us : users) {
-//            if (us != null)
-//                countPlaced++;
-//        }
-//
-//        if (countPlaced > 9)
-//            return null;
-
-        int index = 0;
-        for (User us : users) {
-            if (us == null) {
-                users.set(index, user);
-                break;
-            }
-            index++;
-        }
-        return user;
-    }
-
-    public User update(User user) {
-        if (user == null)
-            return null;
-
-        User curUser = findById((user.getId()));
-        if (curUser == null)
-            return null;
-
-        long curUserId = curUser.getId();
-
-        int index = 0;
-        for (User us : users) {
-            if (us != null && us.getId() == curUserId) {
-                users.set(index, user);
-                break;
-            }
-        }
-        return user;
-    }
-
-    public void delete(long id) {
-        User user = findById(id);
-
-        int index = 0;
-        for (User us : users) {
-            if (us == user) {
-                users.set(index,null);
-                break;
-            }
-            index++;
-        }
-    }
-
-    private User findById(long id) {
+        int count = 0;
         for (User user : users) {
-            if (user != null && id == user.getId())
-                return user;
+            if (user == null) throw new NullPointerException("null!!!!");
+
+            if (id == user.getId()) {
+                return users.get(count);
+            }
+            count++;
         }
         return null;
     }
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public User save(User user) throws Exception {
+
+        if (user == null) throw new NullPointerException("null!!!!");
+
+        if (findById(user.getId()) != null)
+            throw new Exception(" user already exist");
+
+        users.add(user);
+        return user;
     }
 
-    //
-//    public User[] getUsers() {
-//        return users;
-//    }
-//
-//    public User getFindById(long id) {
-//        return findById(id);
-//    }
+    public User update(User user) throws Exception {
+        if (user == null) throw new NullPointerException("null!!!!");
+
+
+        if (findById(user.getId()) == null)
+            throw new Exception(" user with ID: " + user.getId() + " can not be found");
+
+        users.set((int) user.getId(), user);
+
+        return user;
+    }
+
+    public void delete(long id) throws Exception {
+        if (findById(id) == null) throw new Exception(" user with ID: " + id + " can not be found");
+
+        users.remove(id);
+    }
 }
