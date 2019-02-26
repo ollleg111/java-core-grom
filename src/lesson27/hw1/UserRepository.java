@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class UserRepository {
 
-    ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<User> users = new ArrayList<>();
 
-    public User findById(long id) throws Exception {
+    public static User findById(long id) throws Exception {
 
         int count = 0;
         for (User user : users) {
@@ -20,7 +20,7 @@ public class UserRepository {
         return null;
     }
 
-    public User save(User user) throws Exception {
+    public static User save(User user) throws Exception {
 
         if (user == null) throw new NullPointerException("null!!!!");
 
@@ -31,7 +31,7 @@ public class UserRepository {
         return user;
     }
 
-    public User update(User user) throws Exception {
+    public static User update(User user) throws Exception {
         if (user == null) throw new NullPointerException("null!!!!");
 
 
@@ -43,7 +43,7 @@ public class UserRepository {
         return user;
     }
 
-    public void delete(long id) throws Exception {
+    public static void delete(long id) throws Exception {
         if (findById(id) == null) throw new Exception(" user with ID: " + id + " can not be found");
 
         users.remove(id);
