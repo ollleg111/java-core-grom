@@ -6,54 +6,47 @@ public class UserRepository {
 
     private ArrayList<User> users = new ArrayList<>();
 
-    public UserRepository(ArrayList<User> users) {
-        this.users = users;
-    }
+//    public UserRepository(ArrayList<User> users) {
+//        this.users = users;
+//    }
 
-    public ArrayList<User> getUsers() {
-        return users;
-    }
+//    public ArrayList<User> getUsers() {
+//        return users;
+//    }
 
     public User findById(long id) throws Exception {
 
-        int count = 0;
-        for (User user : users) {
-            if (user == null) throw new NullPointerException("null!!!!");
-
-            if (id == user.getId()) {
-                return users.get(count);
-            }
-            count++;
+        if (users.contains(id)) {
+            return users.get(users.indexOf(id));
         }
-        return null;
+        throw new Exception("user with id: " + id + " not found");
     }
 
     public User save(User user) throws Exception {
 
-        if (user == null) throw new NullPointerException("null!!!!");
-
-        if (findById(user.getId()) != null)
-            throw new Exception(" user already exist");
+        if (user == null && users.contains(user))
+            throw new Exception("user " + user.toString() + " not found");
 
         users.add(user);
         return user;
     }
 
     public User update(User user) throws Exception {
-        if (user == null) throw new NullPointerException("null!!!!");
 
-
-        if (findById(user.getId()) == null)
-            throw new Exception(" user with ID: " + user.getId() + " can not be found");
-
-        users.set((int) user.getId(), user);
-
-        return user;
+        if (user != null) {
+            if (users.contains(user)) {
+                users.set(users.indexOf(user), user);
+                return users.get(users.indexOf(user));
+            }
+        }
+        throw new Exception("user with id: " + user.toString() + " not found");
     }
 
     public void delete(long id) throws Exception {
-        if (findById(id) == null) throw new Exception(" user with ID: " + id + " can not be found");
 
-        users.remove(id);
+        if (users.contains(id)) {
+            users.remove(users.indexOf(id));
+        }
+        throw new Exception(" user with ID: " + id + " not found");
     }
 }
