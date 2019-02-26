@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class UserRepository {
 
-    private ArrayList<User> users = new ArrayList<>();
+    private final ArrayList<User> users;
 
-//    public UserRepository(ArrayList<User> users) {
-//        this.users = users;
-//    }
+    public UserRepository(ArrayList<User> users) {
+        this.users = users;
+    }
 
-//    public ArrayList<User> getUsers() {
-//        return users;
-//    }
+    public ArrayList<User> getUsers() {
+        return users;
+    }
 
     public User findById(long id) throws Exception {
 
