@@ -58,7 +58,7 @@ public class ArrayListTest {
         list.add(order2);
         list.add(order3);
         list.add(order4);
-        
+
         return list;
     }
 }
