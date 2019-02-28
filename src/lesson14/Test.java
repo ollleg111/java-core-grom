@@ -39,7 +39,7 @@ public class Test implements Cloneable {
 
     @Override
     public String toString() {
-        return "Test{" +
+        return "Demo{" +
                 "someNumber=" + someNumber +
                 ", name='" + name + '\'' +
                 '}';

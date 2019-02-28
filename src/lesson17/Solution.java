@@ -6,7 +6,7 @@ import static java.lang.Character.isLetterOrDigit;
 public class Solution {
     public static void main(String[] args) {
 
-//        String test = "There is Test something new or jot sdf sdf sdf word Test op or";
+//        String test = "There is Demo something new or jot sdf sdf sdf word Demo op or";
 
 //        String test = "There";
 

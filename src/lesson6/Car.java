@@ -29,7 +29,7 @@ public class Car {
         ownerName = newOwnerName;
     }
 
-//    private class Test{
+//    private class Demo{
 //
 //    }
 }

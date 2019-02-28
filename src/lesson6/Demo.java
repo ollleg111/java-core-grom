@@ -15,7 +15,7 @@ public class Demo {
         carObject.startRun();
         carObject.stopRun();
 
-        carObject.changeOwner("Test");
+        carObject.changeOwner("Demo");
 
         System.out.println(carObject.ownerName);
 

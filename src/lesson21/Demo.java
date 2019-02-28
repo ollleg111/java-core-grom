@@ -9,7 +9,7 @@ public class Demo {
 
         System.out.println(company.getLicence());
 
-        Company company1 = new Company(9, "Test");
+        Company company1 = new Company(9, "Demo");
 
         System.out.println(company1.getLicence());
 
