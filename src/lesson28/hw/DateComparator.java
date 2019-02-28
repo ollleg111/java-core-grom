@@ -8,7 +8,7 @@ public class DateComparator implements Comparator<Capability> {
     public int compare(Capability o1, Capability o2) {
 //        if (!o1.getDateCreated().equals(o2.getDateCreated()))
 //            return o1.getDateCreated().compareTo(o2.getDateCreated());
-//        else return 0; 
+//        else return 0;
 
             return o1.getDateCreated().compareTo(o2.getDateCreated());
 
