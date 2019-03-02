@@ -9,6 +9,14 @@ public class File {
         this.sizeInBytes = sizeInBytes;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
+    public long getSizeInBytes() {
+        return sizeInBytes;
+    }
+
     @Override
     public String toString() {
         return "File{" +
