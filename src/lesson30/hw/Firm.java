@@ -26,6 +26,33 @@ public class Firm {
         return customers;
     }
 
+    public void setDateFounded(Date dateFounded) {
+        this.dateFounded = dateFounded;
+    }
+
+    public void setDepartments(Collection<Department> departments) {
+        this.departments = departments;
+    }
+
+    public void setCustomers(Collection<Customer> customers) {
+        this.customers = customers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Firm firm = (Firm) o;
+
+        return dateFounded.equals(firm.dateFounded);
+    }
+
+    @Override
+    public int hashCode() {
+        return dateFounded.hashCode();
+    }
+
     @Override
     public String toString() {
         return "Firm{" +

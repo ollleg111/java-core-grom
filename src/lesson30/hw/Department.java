@@ -19,6 +19,14 @@ public class Department {
         return employees;
     }
 
+    public void setType(DepartmentType type) {
+        this.type = type;
+    }
+
+    public void setEmployees(Collection<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
