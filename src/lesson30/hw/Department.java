@@ -6,6 +6,11 @@ public class Department {
     private DepartmentType type;
     private Collection<Employee> employees;
 
+    public Department(DepartmentType type) {
+        this.type = type;
+    }
+
+    //???
     public Department(DepartmentType type, Collection<Employee> employees) {
         this.type = type;
         this.employees = employees;
@@ -19,19 +24,11 @@ public class Department {
         return employees;
     }
 
-    public void setType(DepartmentType type) {
-        this.type = type;
-    }
-
-    public void setEmployees(Collection<Employee> employees) {
-        this.employees = employees;
-    }
-
+    //???
     @Override
     public String toString() {
         return "Department{" +
                 "type=" + type +
-                ", employees=" + employees +
                 '}';
     }
 }

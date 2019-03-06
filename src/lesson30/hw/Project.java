@@ -17,14 +17,6 @@ public class Project {
         return customer;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     @Override
     public String toString() {
         return "Project{" +

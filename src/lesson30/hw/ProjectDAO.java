@@ -1,27 +1,15 @@
 package lesson30.hw;
 
-import java.util.Set;
-import java.util.TreeSet;
 
-public class ProjectDAO {
-    private Set<Project> projects = new TreeSet<>();
+public class ProjectDAO extends GeneralDAO<Project>{
 
-    public ProjectDAO(Set<Project> projects) {
-        this.projects = projects;
-    }
+    private static ProjectDAO instance;
 
-    public Set<Project> getProjects() {
-        return projects;
-    }
+    public static ProjectDAO getInstance(){
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }
-
-    @Override
-    public String toString() {
-        return "ProjectDAO{" +
-                "projects=" + projects +
-                '}';
+        if(instance == null){
+            instance = new ProjectDAO();
+        }
+        return instance;
     }
 }

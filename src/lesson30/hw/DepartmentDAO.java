@@ -1,27 +1,15 @@
 package lesson30.hw;
 
-import java.util.Set;
-import java.util.TreeSet;
+public class DepartmentDAO extends GeneralDAO<Department>{
 
-public class DepartmentDAO {
-    Set<Department> departments = new TreeSet<>();
+    private static DepartmentDAO instance;
 
-    public DepartmentDAO(Set<Department> departments) {
-        this.departments = departments;
+    public static DepartmentDAO getInstance(){
+        if(instance == null){
+            instance = new DepartmentDAO();
+        }
+        return instance;
     }
+    //TODO
 
-    public Set<Department> getDepartments() {
-        return departments;
-    }
-
-    public void setDepartments(Set<Department> departments) {
-        this.departments = departments;
-    }
-
-    @Override
-    public String toString() {
-        return "DepartmentDAO{" +
-                "departments=" + departments +
-                '}';
-    }
 }

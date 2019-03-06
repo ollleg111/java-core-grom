@@ -11,6 +11,15 @@ public class Customer {
         this.monthlyPay = monthlyPay;
     }
 
+    public Customer(String name, String country) {
+        this.name = name;
+        this.country = country;
+    }
+
+    public Customer(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -21,18 +30,6 @@ public class Customer {
 
     public int getMonthlyPay() {
         return monthlyPay;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setMonthlyPay(int monthlyPay) {
-        this.monthlyPay = monthlyPay;
     }
 
     @Override

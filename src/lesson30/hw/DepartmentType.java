@@ -1,4 +1,9 @@
 package lesson30.hw;
 
-public class DepartmentType {
+public enum DepartmentType {
+    DEVELOPMENT,
+    DESIGN,
+    ANALITICS,
+    MANAGER,
+    FINANCE
 }

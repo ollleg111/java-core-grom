@@ -1,27 +1,14 @@
 package lesson30.hw;
 
-import java.util.Set;
-import java.util.TreeSet;
 
-public class CustomerDAO {
-    Set<Customer> customers = new TreeSet<>();
+public class CustomerDAO extends GeneralDAO<Customer> {
 
-    public CustomerDAO(Set<Customer> customers) {
-        this.customers = customers;
-    }
+    private static CustomerDAO instance;
 
-    public Set<Customer> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
-    }
-
-    @Override
-    public String toString() {
-        return "CustomerDAO{" +
-                "customers=" + customers +
-                '}';
+    public static CustomerDAO getInstance(){
+        if(instance == null){
+            instance = new CustomerDAO();
+        }
+        return instance;
     }
 }

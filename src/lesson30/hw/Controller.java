@@ -1,12 +1,20 @@
 package lesson30.hw;
 
 import java.util.Set;
-import java.util.TreeSet;
 
 public class Controller {
 
-    public Set<Employee> employees = new TreeSet<>();
+    private EmployeeDAO employeeDAO;
+    private DepartmentDAO departmentDAO;
+    private CustomerDAO customerDAO;
+    private ProjectDAO projectDAO;
 
+    public Controller(EmployeeDAO employeeDAO, DepartmentDAO departmentDAO, CustomerDAO customerDAO, ProjectDAO projectDAO) {
+        this.employeeDAO = employeeDAO;
+        this.departmentDAO = departmentDAO;
+        this.customerDAO = customerDAO;
+        this.projectDAO = projectDAO;
+    }
 
     public Set<Project> projectsByEmployee(Employee employee) {
 
