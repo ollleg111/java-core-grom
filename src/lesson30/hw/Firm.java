@@ -45,8 +45,6 @@ public class Firm {
     public String toString() {
         return "Firm{" +
                 "dateFounded=" + dateFounded +
-                ", departments=" + departments +
-                ", customers=" + customers +
                 '}';
     }
 }

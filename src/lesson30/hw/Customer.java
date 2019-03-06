@@ -39,25 +39,18 @@ public class Customer {
 
         Customer customer = (Customer) o;
 
-        if (monthlyPay != customer.monthlyPay) return false;
-        if (!name.equals(customer.name)) return false;
-        return country.equals(customer.country);
+        return name.equals(customer.name);
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + country.hashCode();
-        result = 31 * result + monthlyPay;
-        return result;
+        return name.hashCode();
     }
 
     @Override
     public String toString() {
         return "Customer{" +
                 "name='" + name + '\'' +
-                ", country='" + country + '\'' +
-                ", monthlyPay=" + monthlyPay +
                 '}';
     }
 }
