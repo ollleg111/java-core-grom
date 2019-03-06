@@ -11,7 +11,8 @@ public class Employee {
     private Department department;
     private Collection<Project> projects;
 
-    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department, Collection<Project> projects) {
+    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department,
+                    Collection<Project> projects) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateHired = dateHired;
@@ -51,13 +52,13 @@ public class Employee {
         return projects;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public void setProjects(Collection<Project> projects) {
-        this.projects = projects;
-    }
+//    public void setDepartment(Department department) {
+//        this.department = department;
+//    }
+//
+//    public void setProjects(Collection<Project> projects) {
+//        this.projects = projects;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -88,8 +89,6 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", dateHired=" + dateHired +
                 ", position=" + position +
-                ", department=" + department +
-                ", projects=" + projects +
                 '}';
     }
 }

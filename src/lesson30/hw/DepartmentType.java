@@ -3,7 +3,7 @@ package lesson30.hw;
 public enum DepartmentType {
     DEVELOPMENT,
     DESIGN,
-    ANALITICS,
+    ANALYST,
     MANAGER,
     FINANCE
 }

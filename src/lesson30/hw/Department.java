@@ -10,6 +10,11 @@ public class Department {
         this.type = type;
     }
 
+    public Department(DepartmentType type, Collection<Employee> employees) {
+        this.type = type;
+        this.employees = employees;
+    }
+
     public DepartmentType getType() {
         return type;
     }

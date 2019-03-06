@@ -18,4 +18,8 @@ public class GeneralDAO<T> {
     public void remove(T t) {
         position.remove(t);
     }
+
+    public Set<T> getAll() {
+        return position;
+    }
 }
