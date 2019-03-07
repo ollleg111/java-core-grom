@@ -10,6 +10,13 @@ public class DepartmentDAO extends GeneralDAO<Department>{
         }
         return instance;
     }
-    //TODO
 
+    public Department getDepartmentByType(DepartmentType departmentType){
+        for(Department department: getAll()){
+            if(department.getType() == departmentType)
+                return department;
+
+        }
+        return null;
+    }
 }

@@ -3,6 +3,7 @@ package lesson30.hw;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 
 public class Demo {
     public static void main(String[] args) {
@@ -34,6 +35,42 @@ public class Demo {
         employeeDAO.add(employee1);
         employeeDAO.add(employee2);
         employeeDAO.add(employee3);
+        employeeDAO.add(employee4);
+        employeeDAO.add(employee5);
+        employeeDAO.add(employee6);
+        employeeDAO.add(employee7);
+        employeeDAO.add(employee8);
+        employeeDAO.add(employee9);
+        employeeDAO.add(employee10);
+        employeeDAO.add(employee11);
+        employeeDAO.add(employee12);
+        employeeDAO.add(employee13);
+        employeeDAO.add(employee14);
+
+//        for (Employee employee : EmployeeDAO.getInstance().getAll()) {
+//            System.out.println(employee);
+//        }
+//        System.out.println("____________________________________________________________________________________");
+
+        employee0.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DEVELOPMENT));
+        employee1.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DEVELOPMENT));
+        employee3.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DEVELOPMENT));
+        employee4.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DEVELOPMENT));
+        employee5.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DEVELOPMENT));
+        employee6.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DEVELOPMENT));
+
+        employee2.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DESIGN));
+        employee7.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DESIGN));
+        employee8.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.DESIGN));
+
+        employee9.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.FINANCE));
+
+        employee10.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.MANAGER));
+        employee11.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.MANAGER));
+        employee12.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.MANAGER));
+
+        employee13.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.ANALYST));
+        employee14.setDepartment(departmentDAO.getDepartmentByType(DepartmentType.ANALYST));
 
         Customer customer0 = new Customer("SkyNet");
         Customer customer1 = new Customer("IdSoftware");
@@ -45,6 +82,11 @@ public class Demo {
         customerDAO.add(customer2);
         customerDAO.add(customer3);
 
+//        for (Customer customer : CustomerDAO.getInstance().getAll()) {
+//            System.out.println(customer.getName());
+//        }
+//        System.out.println("____________________________________________________________________________________");
+
         Project project0 = new Project("founding", customer0);
         Project project1 = new Project("geoPositing", customer1);
         Project project2 = new Project("banking", customer2);
@@ -55,44 +97,25 @@ public class Demo {
         projectDAO.add(project2);
         projectDAO.add(project3);
 
-        Collection<Employee> employeesDevelopers = new HashSet<>();
-        employeesDevelopers.add(employee0);
-        employeesDevelopers.add(employee1);
-        employeesDevelopers.add(employee3);
-        employeesDevelopers.add(employee4);
-        employeesDevelopers.add(employee5);
-        employeesDevelopers.add(employee6);
+        employee0.addProject(project3);
+        employee1.addProject(project3);
+        employee3.addProject(project3);
 
-        Collection<Employee> employeesDesigne = new HashSet<>();
-        employeesDesigne.add(employee7);
-        employeesDesigne.add(employee8);
+        employee6.addProject(project0);
+        employee1.addProject(project0);
+        employee4.addProject(project0);
+        employee5.addProject(project0);
 
-        Collection<Employee> employeesFinance = new HashSet<>();
-        employeesFinance.add(employee9);
+        for(Employee employee: EmployeeDAO.getInstance().getAll()){
+            System.out.println(employee.toString());
+        }
 
-        Collection<Employee> employeesManage = new HashSet<>();
-        employeesManage.add(employee10);
-        employeesManage.add(employee11);
-        employeesManage.add(employee12);
+        System.out.println("____________________________________________________________________________________");
 
-        Collection<Employee> employeesAnalyst = new HashSet<>();
-        employeesManage.add(employee13);
-        employeesManage.add(employee14);
-
-        Department depDevelop = new Department(DepartmentType.DEVELOPMENT, employeesDevelopers);
-        Department depDesign = new Department(DepartmentType.DESIGN, employeesDesigne);
-        Department depFinance = new Department(DepartmentType.FINANCE, employeesFinance);
-        Department depManage = new Department(DepartmentType.MANAGER, employeesManage);
-        Department depAnalyst = new Department(DepartmentType.ANALYST, employeesAnalyst);
-        departmentDAO.add(depDevelop);
-        departmentDAO.add(depDesign);
-        departmentDAO.add(depFinance);
-        departmentDAO.add(depManage);
-        departmentDAO.add(depAnalyst);
-
-
-        System.out.println(controller.employeesByProject("founding"));
-
+        for (Employee employee : controller.employeesByProject("founding")) {
+            System.out.println(employee.getFirstName() + " " + employee.getLastName());
+        }
+        System.out.println("____________________________________________________________________________________");
 
     }
 }

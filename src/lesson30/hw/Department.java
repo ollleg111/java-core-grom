@@ -1,16 +1,17 @@
 package lesson30.hw;
 
 import java.util.Collection;
+import java.util.Set;
 
 public class Department {
     private DepartmentType type;
-    private Collection<Employee> employees;
+    private Set<Employee> employees;
 
     public Department(DepartmentType type) {
         this.type = type;
     }
 
-    public Department(DepartmentType type, Collection<Employee> employees) {
+    public Department(DepartmentType type, Set<Employee> employees) {
         this.type = type;
         this.employees = employees;
     }

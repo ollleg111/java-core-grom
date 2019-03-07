@@ -1,6 +1,5 @@
 package lesson30.hw;
 
-
 public class ProjectDAO extends GeneralDAO<Project>{
 
     private static ProjectDAO instance;

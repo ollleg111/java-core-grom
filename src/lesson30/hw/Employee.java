@@ -1,7 +1,8 @@
 package lesson30.hw;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Employee {
     private String firstName;
@@ -9,10 +10,10 @@ public class Employee {
     private Date dateHired;
     private Position position;
     private Department department;
-    private Collection<Project> projects;
+    private Set<Project> projects = new HashSet<>();
 
-    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department,
-                    Collection<Project> projects) {
+    public Employee(String firstName, String lastName, Date dateHired, Position position,
+                    Department department, Set<Project> projects) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateHired = dateHired;
@@ -48,38 +49,23 @@ public class Employee {
         return department;
     }
 
-    public Collection<Project> getProjects() {
+    public Set<Project> getProjects() {
         return projects;
     }
 
-//    public void setDepartment(Department department) {
-//        this.department = department;
-//    }
-//
-//    public void setProjects(Collection<Project> projects) {
-//        this.projects = projects;
-//    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Employee employee = (Employee) o;
-
-        if (!firstName.equals(employee.firstName)) return false;
-        if (!lastName.equals(employee.lastName)) return false;
-        if (!dateHired.equals(employee.dateHired)) return false;
-        return position == employee.position;
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
-    @Override
-    public int hashCode() {
-        int result = firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + dateHired.hashCode();
-        result = 31 * result + position.hashCode();
-        return result;
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    //TODO
+    public void addProject(Project project){
+        if(project != null){
+            this.projects.add(project);
+        }
     }
 
     @Override
@@ -89,6 +75,8 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", dateHired=" + dateHired +
                 ", position=" + position +
+                ", department=" + department +
+                ", projects=" + projects +
                 '}';
     }
 }

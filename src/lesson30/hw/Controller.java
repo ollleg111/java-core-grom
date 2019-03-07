@@ -1,5 +1,6 @@
 package lesson30.hw;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Controller {
@@ -9,7 +10,8 @@ public class Controller {
     private CustomerDAO customerDAO;
     private ProjectDAO projectDAO;
 
-    public Controller(EmployeeDAO employeeDAO, DepartmentDAO departmentDAO, CustomerDAO customerDAO, ProjectDAO projectDAO) {
+    public Controller(EmployeeDAO employeeDAO, DepartmentDAO departmentDAO, CustomerDAO customerDAO,
+                      ProjectDAO projectDAO) {
         this.employeeDAO = employeeDAO;
         this.departmentDAO = departmentDAO;
         this.customerDAO = customerDAO;
@@ -18,8 +20,18 @@ public class Controller {
 
     //список сотрудников, работающих над заданным проектом
     public Set<Employee> employeesByProject(String projectName) {
-
-        return employeeDAO.getListEmployessFromProject(projectName);
+            Set<Employee> res = new HashSet<>();
+            if (projectName != null) {
+                for (Employee employee : employeeDAO.getAll()) {
+                    if (employee != null && employee.getProjects() != null) {
+                        for (Project pro : employee.getProjects()) {
+                            if (pro != null && (pro.getName()).equals(projectName))
+                                res.add(employee);
+                        }
+                    }
+                }
+            }
+            return res;
     }
 
     //список проектов, в которых учавствует заданный сотрудник
@@ -64,11 +76,10 @@ public class Controller {
         return null;
     }
 
-    //список сотрудников, учавствующих в проектахб выполняемых для данного заказчика
+    //список сотрудников, учавствующих в проектах выполняемых для данного заказчика
     public Set<Employee> employeesByCustomerProjects(Customer customer) {
 
         return null;
     }
-
 }
 

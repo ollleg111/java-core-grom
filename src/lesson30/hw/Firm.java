@@ -2,13 +2,14 @@ package lesson30.hw;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 public class Firm {
     private Date dateFounded;
-    private Collection<Department> departments;
-    private Collection<Customer> customers;
+    private Set<Department> departments;
+    private Set<Customer> customers;
 
-    public Firm(Date dateFounded, Collection<Department> departments, Collection<Customer> customers) {
+    public Firm(Date dateFounded, Set<Department> departments, Set<Customer> customers) {
         this.dateFounded = dateFounded;
         this.departments = departments;
         this.customers = customers;
