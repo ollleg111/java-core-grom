@@ -53,17 +53,16 @@ public class Employee {
         return projects;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }
-
+    //TODO
     public void setDepartment(Department department) {
-        this.department = department;
+        if (department != null) {
+            this.department = department;
+        }
     }
 
     //TODO
-    public void addProject(Project project){
-        if(project != null){
+    public void setProject(Project project) {
+        if (project != null) {
             this.projects.add(project);
         }
     }

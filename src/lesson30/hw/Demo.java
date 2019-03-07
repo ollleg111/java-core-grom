@@ -1,9 +1,6 @@
 package lesson30.hw;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Demo {
     public static void main(String[] args) {
@@ -97,14 +94,14 @@ public class Demo {
         projectDAO.add(project2);
         projectDAO.add(project3);
 
-        employee0.addProject(project3);
-        employee1.addProject(project3);
-        employee3.addProject(project3);
+        employee0.setProject(project3);
+        employee1.setProject(project3);
+        employee3.setProject(project3);
 
-        employee6.addProject(project0);
-        employee1.addProject(project0);
-        employee4.addProject(project0);
-        employee5.addProject(project0);
+        employee6.setProject(project0);
+        employee1.setProject(project0);
+        employee4.setProject(project0);
+        employee5.setProject(project0);
 
         for(Employee employee: EmployeeDAO.getInstance().getAll()){
             System.out.println(employee.toString());

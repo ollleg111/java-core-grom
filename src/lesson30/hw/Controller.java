@@ -18,6 +18,8 @@ public class Controller {
         this.projectDAO = projectDAO;
     }
 
+    //TODO BadRequestException ????
+
     //список сотрудников, работающих над заданным проектом
     public Set<Employee> employeesByProject(String projectName) {
             Set<Employee> res = new HashSet<>();
