@@ -84,10 +84,10 @@ public class Demo {
 //        }
 //        System.out.println("____________________________________________________________________________________");
 
-        Project project0 = new Project("founding", customer0);
-        Project project1 = new Project("geoPositing", customer1);
-        Project project2 = new Project("banking", customer2);
-        Project project3 = new Project("gameDesigning", customer3);
+        Project project0 = new Project("Founding", customer0);
+        Project project1 = new Project("GeoPositing", customer1);
+        Project project2 = new Project("Banking", customer2);
+        Project project3 = new Project("GameDesigning", customer3);
 
         projectDAO.add(project0);
         projectDAO.add(project1);
@@ -100,19 +100,58 @@ public class Demo {
 
         employee6.setProject(project0);
         employee1.setProject(project0);
+        employee11.setProject(project0);
         employee4.setProject(project0);
         employee5.setProject(project0);
+        employee0.setProject(project0);
 
-        for(Employee employee: EmployeeDAO.getInstance().getAll()){
+        for (Employee employee : EmployeeDAO.getInstance().getAll()) {
             System.out.println(employee.toString());
         }
+        System.out.println();
+        System.out.println("______________________________employeesByProject____________________________________");
+        System.out.println();
 
-        System.out.println("____________________________________________________________________________________");
-
-        for (Employee employee : controller.employeesByProject("founding")) {
+        for (Employee employee : controller.employeesByProject("Founding")) {
             System.out.println(employee.getFirstName() + " " + employee.getLastName());
         }
-        System.out.println("____________________________________________________________________________________");
+        System.out.println("______________________________projectsByEmployee____________________________________");
+        System.out.println();
 
+
+        for (Project project : controller.projectsByEmployee(employee1)) {
+            System.out.println(project.getName());
+        }
+        System.out.println("______________________________employeesByDepartmentWithoutProjects__________________");
+        System.out.println();
+
+        for (Employee employee : controller.employeesByDepartmentWithoutProjects(DepartmentType.MANAGER)) {
+            System.out.println(employee.getFirstName() + " " + employee.getLastName());
+        }
+        System.out.println("______________________________employeesWithoutProject_______________________________");
+        System.out.println();
+
+        System.out.println("List of employees, who do not work in any projects: ");
+        for (Employee employee : controller.employeesWithoutProject()) {
+            System.out.println(employee.getFirstName() + " " + employee.getLastName());
+        }
+        System.out.println("______________________________employeesByTeamLead___________________________________");
+        System.out.println();
+
+        for (Employee employee : controller.employeesByTeamLead(employee0)) {
+            System.out.println(employee.getFirstName() + " " + employee.getLastName());
+        }
+        System.out.println("______________________________teamLeadsByEmployee___________________________________");
+        System.out.println();
+
+
+        for (Employee employee : controller.teamLeadsByEmployee(employee1)) {
+            System.out.println(employee.getFirstName() + " " + employee.getLastName());
+        }
+
+
+
+//        System.out.println("______________________________teamLeadsByEmployee___________________________________");
+//        System.out.println();
     }
 }

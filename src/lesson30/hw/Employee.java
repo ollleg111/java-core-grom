@@ -66,6 +66,10 @@ public class Employee {
             this.projects.add(project);
         }
     }
+//
+//    public void setProjects(Set<Project> projects) {
+//        this.projects = projects;
+//    }
 
     @Override
     public String toString() {

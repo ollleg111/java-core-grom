@@ -47,6 +47,14 @@ public class Customer {
         return name.hashCode();
     }
 
+//    @Override
+//    public String toString() {
+//        return "Customer{" +
+//                "name='" + name + '\'' +
+//                '}';
+//    }
+
+
     @Override
     public String toString() {
         return "Customer{" +

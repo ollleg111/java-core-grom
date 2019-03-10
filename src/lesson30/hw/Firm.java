@@ -28,21 +28,6 @@ public class Firm {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Firm firm = (Firm) o;
-
-        return dateFounded.equals(firm.dateFounded);
-    }
-
-    @Override
-    public int hashCode() {
-        return dateFounded.hashCode();
-    }
-
-    @Override
     public String toString() {
         return "Firm{" +
                 "dateFounded=" + dateFounded +
