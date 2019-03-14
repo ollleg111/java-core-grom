@@ -27,7 +27,7 @@ public class Controller {
             for (Employee employee : employeeDAO.getAll()) {
                 if (employee != null && employee.getProjects() != null) {
                     for (Project pro : employee.getProjects()) {
-                        if (pro != null && (pro.getName()).equals(projectName))
+                        if (pro != null && pro.getName().equals(projectName))
                             result.add(employee);
                     }
                 }
@@ -38,9 +38,11 @@ public class Controller {
 
     //список проектов, в которых учавствует заданный сотрудник
     public Set<Project> projectsByEmployee(Employee employee) {
-        for (Employee employeeFromDAO : employeeDAO.getAll()) {
-            if (employee != null && employeeFromDAO.equals(employee))
-                return employee.getProjects();
+        if (employee != null) {
+            for (Employee employeeFromDAO : employeeDAO.getAll()) {
+                if (employeeFromDAO != null && employeeFromDAO.equals(employee))
+                    return employee.getProjects();
+            }
         }
         return null;
     }
@@ -48,10 +50,12 @@ public class Controller {
     //список сотрудников из заданного отдела, не учавствующих ни в одном проекте
     public Set<Employee> employeesByDepartmentWithoutProjects(DepartmentType departmentType) {
         Set<Employee> result = new HashSet<>();
-        for (Employee employee : employeeDAO.getAll()) {
-            if (employee != null && employee.getDepartment().getType() == departmentType) {
-                if (employee.getProjects().isEmpty()) {
-                    result.add(employee);
+        if (departmentType != null) {
+            for (Employee employee : employeeDAO.getAll()) {
+                if (employee != null && employee.getDepartment().getType() == departmentType) {
+                    if (employee.getProjects().isEmpty()) {
+                        result.add(employee);
+                    }
                 }
             }
         }
@@ -107,13 +111,15 @@ public class Controller {
     //список сотрудников, учавствующих в тех же проектах, что и заданный сотрудник
     public Set<Employee> employeesByProjectEmployee(Employee employee) {
         Set<Employee> result = new HashSet<>();
-        for (Employee employeeFromDAO : employeeDAO.getAll()) {
-            if (employeeFromDAO != null) {
-                for (Project project : employeeFromDAO.getProjects()) {
-                    if (project != null && employee.getProjects().contains(project))
-                        result.add(employeeFromDAO);
+        if (employee != null) {
+            for (Employee employeeFromDAO : employeeDAO.getAll()) {
+                if (employeeFromDAO != null) {
+                    for (Project project : employeeFromDAO.getProjects()) {
+                        if (project != null && employee.getProjects().contains(project))
+                            result.add(employeeFromDAO);
+                    }
+                    result.remove(employee);
                 }
-                result.remove(employee);
             }
         }
         return result;
@@ -122,21 +128,26 @@ public class Controller {
     //список проектов, выполняемых для заданного заказчика
     public Set<Project> projectsByCustomer(Customer customer) {
         Set<Project> result = new HashSet<>();
-        for (Project project : projectDAO.getAll()) {
-            if (project != null && project.getCustomer().equals(customer))
-                result.add(project);
+        if (customer != null) {
+            for (Project project : projectDAO.getAll()) {
+                if (project != null && project.getCustomer().equals(customer))
+                    result.add(project);
+            }
         }
+
         return result;
     }
 
     //список сотрудников, учавствующих в проектах выполняемых для данного заказчика
     public Set<Employee> employeesByCustomerProjects(Customer customer) {
         Set<Employee> result = new HashSet<>();
-        for (Employee employeeFromDAO : employeeDAO.getAll()) {
-            if (employeeFromDAO != null) {
-                for (Project project : employeeFromDAO.getProjects()) {
-                    if (project != null && project.getCustomer().equals(customer))
-                        result.add(employeeFromDAO);
+        if (customer != null) {
+            for (Employee employeeFromDAO : employeeDAO.getAll()) {
+                if (employeeFromDAO != null) {
+                    for (Project project : employeeFromDAO.getProjects()) {
+                        if (project != null && project.getCustomer().equals(customer))
+                            result.add(employeeFromDAO);
+                    }
                 }
             }
         }
