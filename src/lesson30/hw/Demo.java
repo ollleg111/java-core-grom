@@ -105,9 +105,9 @@ public class Demo {
         employee5.setProject(project0);
         employee0.setProject(project0);
 
-        for (Employee employee : EmployeeDAO.getInstance().getAll()) {
-            System.out.println(employee.toString());
-        }
+//        for (Employee employee : EmployeeDAO.getInstance().getAll()) {
+//            System.out.println(employee.toString());
+//        }
         System.out.println();
         System.out.println("______________________________employeesByProject____________________________________");
         System.out.println();
@@ -144,14 +144,29 @@ public class Demo {
         System.out.println("______________________________teamLeadsByEmployee___________________________________");
         System.out.println();
 
-
         for (Employee employee : controller.teamLeadsByEmployee(employee1)) {
             System.out.println(employee.getFirstName() + " " + employee.getLastName());
         }
 
+        System.out.println("______________________________employeesByProjectEmployee____________________________");
+        System.out.println();
 
+        for (Employee employee : controller.employeesByProjectEmployee(employee3)) {
+            System.out.println(employee.getFirstName() + " " + employee.getLastName());
+        }
 
-//        System.out.println("______________________________teamLeadsByEmployee___________________________________");
-//        System.out.println();
+        System.out.println("______________________________projectsByCustomer____________________________________");
+        System.out.println();
+
+        for(Project project: controller.projectsByCustomer(customer3)){
+            System.out.println(project.getCustomer().getName());
+        }
+
+        System.out.println("______________________________employeesByCustomerProjects___________________________");
+        System.out.println();
+
+        for(Employee employee: controller.employeesByCustomerProjects(customer3)){
+            System.out.println(employee.getFirstName() + " " + employee.getLastName());
+        }
     }
 }
