@@ -109,6 +109,8 @@ public class Solution {
 
     private static boolean checkWord(String str) {
 
+
+
         char[] arr = str.toCharArray();
         boolean checkLetter = false;
         for (Character ch : arr) {
