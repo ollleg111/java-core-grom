@@ -9,21 +9,21 @@ public class Solution {
     public TreeMap<Character, Long> countSymbols(String text) {
         TreeMap<Character, Long> stringMap = new TreeMap<>();
 
-        for (Character character : text.toCharArray()) {
+        if (text != null && !text.isEmpty()){
 
-            if (Character.isLetter(character))
-                stringMap.put(character, stringMap.get(character) == null ? 1 : stringMap.get(character) + 1);
+            for (Character character : text.toCharArray()) {
+
+                if (Character.isLetter(character))
+                    stringMap.put(character, stringMap.get(character) == null ? 1 : stringMap.get(character) + 1);
+            }
         }
-
         return stringMap;
     }
 
     public TreeMap<String, Integer> words(String text) {
-
         TreeMap<String, Integer> stringMap = new TreeMap<>();
 
         if (text != null && !text.isEmpty()) {
-
             String[] words = text.trim().split(" ");
 
             for (String str : words) {
