@@ -39,7 +39,7 @@ public class Solution {
         boolean checkLetter = false;
 
         if (str.length() <= 2)
-            return checkLetter;
+            return false;
 
         char[] arr = str.toCharArray();
 
