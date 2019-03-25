@@ -19,6 +19,7 @@ public class Solution {
         if (numbers != null) {
             for (String number : numbers) {
                 sum += Integer.parseInt(number);
+
             }
 
         }
