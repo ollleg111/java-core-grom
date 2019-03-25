@@ -13,18 +13,24 @@ public class Solution {
         int sum = 0;
 
         int count = 3;
+        while (count != 0) {
+            System.out.println("Enter string with 10 numbers: ");
+            String[] numbers = validate(bufferedReader.readLine());
+            reader.close();
+            bufferedReader.close();
 
-        System.out.println("Enter string with 10 numbers: ");
-        String[] numbers = validate(bufferedReader.readLine());
-        if (numbers != null) {
-            for (String number : numbers) {
-                sum += Integer.parseInt(number);
-
+            if (numbers != null) {
+                for (String number : numbers) {
+                    sum += Integer.parseInt(number);
+//                    System.out.println(sum);
+                }
+                return sum;
             }
-
+            System.out.println("Your numbers are wrong. " +
+                    (count-- > 0 ? "You have " + count + " attempts to try again" :
+                            "Your numbers are wrong. Number of attempts exceeded"));
         }
-
-        return sum;
+        return 0;
     }
 
     private String[] validate(String str) {
@@ -33,16 +39,15 @@ public class Solution {
 
         if (numbers.length == 10) {
             for (String number : numbers) {
-                if (checkNumber(number) && Integer.parseInt(number) < 100)
+                if (!checkLetter(number) || Integer.parseInt(number) > 100)
                     return null;
             }
         }
         return numbers.length != 10 ? null : numbers;
     }
 
-    private boolean checkNumber(String str) {
+    private boolean checkLetter(String str) {
         boolean checkLetter = false;
-
         char[] arr = str.toCharArray();
 
         for (Character ch : arr) {
@@ -55,6 +60,4 @@ public class Solution {
         }
         return checkLetter;
     }
-
-
 }
