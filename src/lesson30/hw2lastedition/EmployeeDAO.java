@@ -116,7 +116,7 @@ public class EmployeeDAO {
     }
 
     private static Employee identifyTeamLead(Project project) {
-        for (Employee employee : instance.employees) {
+        for (Employee employee : instance.getAll()) {
             if (employee.getProjects().contains(project) &&
                     employee.getPosition().equals(Position.TEAM_LEAD))
                 return employee;
