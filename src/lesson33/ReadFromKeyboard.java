@@ -1,4 +1,3 @@
-package lesson32;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class ReadFromKeyboard {
 //        System.out.println("Hello, " + scanner.nextLine());
 //        scanner.close();
 
-        readKeyboardWithScanner();
+        //readKeyboardWithScanner();
         readKeyboardWithIOStream();
 
     }

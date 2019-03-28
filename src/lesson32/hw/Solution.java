@@ -10,40 +10,52 @@ public class Solution {
 
         InputStreamReader reader = new InputStreamReader(System.in);
         BufferedReader bufferedReader = new BufferedReader(reader);
-        int sum = 0;
+
+        //sol 1
+
+//        for (int i = 3; i != 0; i--) {
+//            System.out.println("Enter string with 10 numbers: ");
+//            int sum = validate(bufferedReader.readLine());
+//            int count = i;
+//            if (sum != 0) return sum;
+//
+//            if (--count > 0)
+//                System.out.println("Your numbers are wrong. You have " + count + " attempts to try again");
+//            else {
+//                System.out.println("Your numbers are wrong. Number of attempts exceeded");
+//            }
+//        }
+
+        //sol 2
 
         int count = 3;
         while (count != 0) {
             System.out.println("Enter string with 10 numbers: ");
-            String[] numbers = validate(bufferedReader.readLine());
-            reader.close();
-            bufferedReader.close();
+            int sum = validate(bufferedReader.readLine());
 
-            if (numbers != null) {
-                for (String number : numbers) {
-                    sum += Integer.parseInt(number);
-//                    System.out.println(sum);
-                }
-                return sum;
-            }
+            if (sum != 0) return sum;
+
             System.out.println("Your numbers are wrong. " +
-                    (count-- > 0 ? "You have " + count + " attempts to try again" :
-                            "Your numbers are wrong. Number of attempts exceeded"));
+                    (--count > 0 ? "You have " + count + " attempts to try again" :
+                            "Number of attempts exceeded"));
         }
         return 0;
     }
 
-    private String[] validate(String str) {
+    private int validate(String str) {
+        int sum = 0;
 
         String[] numbers = str.trim().split(" ");
 
         if (numbers.length == 10) {
             for (String number : numbers) {
                 if (!checkLetter(number) || Integer.parseInt(number) > 100)
-                    return null;
+                    return 0;
+                else
+                    sum += Integer.parseInt(number);
             }
         }
-        return numbers.length != 10 ? null : numbers;
+        return sum;
     }
 
     private boolean checkLetter(String str) {
