@@ -1,58 +1,53 @@
+package lesson33;
+
+import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class ReadFromKeyboard {
 
     public static void main(String[] args) throws IOException {
 
-//        Scanner scanner = new Scanner(System.in);
-//        int count = 2;
-//        while (scanner.hasNext()) {
-//            System.out.println(scanner.next() + " !");
-//            count--;
-//
-//            if (count == 0) break;
-//        }
-
-//        System.out.println("Enter your name: ");
-//        System.out.println("Hello, " + scanner.nextLine());
-//        scanner.close();
-
-        //readKeyboardWithScanner();
-        readKeyboardWithIOStream();
+        readKeyboardWithIOStream1();
+        readKeyboardWithIOStream2();
 
     }
 
-    private static void readKeyboardWithScanner() {
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter your name: ");
-        System.out.println("Hello, " + scanner.nextLine());
-        scanner.close();
-
-    }
-
-    private static void readKeyboardWithIOStream() throws IOException {
+    private static void readKeyboardWithIOStream1() {
 
         InputStreamReader reader = new InputStreamReader(System.in);
-
         BufferedReader bufferedReader = new BufferedReader(reader);
 
-        System.out.println("Enter your name: ");
-        System.out.println("Hello, " + bufferedReader.readLine() + " !");
+        try {
+            System.out.println("Enter your name: ");
+            System.out.println("Hello, " + bufferedReader.readLine() + " !");
+        } catch (IOException e) {
+            System.err.println("Reading from keyboard failed " + e.getMessage());
+        } finally {
+            try {
+                reader.close();
+                bufferedReader.close();
+            } catch (IOException e) {
+                System.err.println("Closing stream failed " + e.getMessage());
+            }
+        }
+    }
 
-//        try {
-//        bufferedReader.readLine();
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        }
+    private static void readKeyboardWithIOStream2() {
 
-        //        bufferedReader.readLine();
+        InputStreamReader reader = new InputStreamReader(System.in);
+        BufferedReader bufferedReader = new BufferedReader(reader);
 
-        bufferedReader.close();
+        try {
+            System.out.println("Enter your name: ");
+            System.out.println("Hello, " + bufferedReader.readLine() + " !");
+        } catch (IOException e) {
+            System.err.println("Reading from keyboard failed " + e.getMessage());
+        } finally {
+            IOUtils.closeQuietly(reader);
+            IOUtils.closeQuietly(bufferedReader);
+        }
     }
 }
