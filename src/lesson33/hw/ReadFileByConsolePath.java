@@ -2,19 +2,34 @@ package lesson33.hw;
 
 import org.apache.commons.io.IOUtils;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class ReadFileByConsolePath {
 
-    public static void readFileByConsolePath(String path) {
+    public static void readFileByConsolePath() {
+        InputStreamReader reader = new InputStreamReader(System.in);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        System.out.println("Please, enter file path to read: ");
+
+        try {
+            String input = bufferedReader.readLine();
+            readFile(input);
+        } catch (IOException e) {
+            //System.err.println("Reading from keyboard failed " + e.getMessage());
+            return;
+        } finally {
+            IOUtils.closeQuietly(reader);
+            IOUtils.closeQuietly(bufferedReader);
+        }
+    }
+
+    private static void readFile(String path) {
+
         FileReader reader;
         try {
             reader = new FileReader(path);
         } catch (FileNotFoundException e) {
-            System.out.println("File does not exist " + e.getMessage());
+            System.err.println("File with path " + path + " not found");
             return;
         }
 
@@ -26,7 +41,7 @@ public class ReadFileByConsolePath {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.err.println("Reading from file " + path + " failed " + e.getMessage());
+            System.err.println("Can't read file by path " + path);
         } finally {
             IOUtils.closeQuietly(bufferedReader);
             IOUtils.closeQuietly(reader);
