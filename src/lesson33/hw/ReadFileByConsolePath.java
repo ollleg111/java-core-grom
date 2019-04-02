@@ -1,12 +1,15 @@
-package lesson33;
+package lesson33.hw;
 
 import org.apache.commons.io.IOUtils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
-public class ReadWriteFile {
+public class ReadFileByConsolePath {
 
-    public static void readFile(String path) {
+    public static void readFileByConsolePath(String path) {
         FileReader reader;
         try {
             reader = new FileReader(path);
@@ -27,25 +30,6 @@ public class ReadWriteFile {
         } finally {
             IOUtils.closeQuietly(bufferedReader);
             IOUtils.closeQuietly(reader);
-        }
-    }
-
-    public static void writeFile(String path){
-
-        FileWriter writer = null;
-        BufferedWriter bufferedWriter = null;
-        try {
-            writer = new FileWriter(path, true);
-            bufferedWriter = new BufferedWriter(writer);
-
-            bufferedWriter.append("\n");
-            bufferedWriter.append("kkjbvabvbjkvbAAAAAAAAAAAA");
-
-        } catch (IOException e) {
-            System.err.println("Can not write to file " + e.getMessage());
-        } finally {
-            IOUtils.closeQuietly(bufferedWriter);
-            IOUtils.closeQuietly(writer);
         }
     }
 }
