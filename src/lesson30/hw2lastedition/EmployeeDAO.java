@@ -30,7 +30,7 @@ public class EmployeeDAO {
         return employees;
     }
 
-    public static Set<Employee> byProject(String projectName) {
+    public static Set<Employee> employeesByProject(String projectName) {
         Set<Employee> result = new HashSet<>();
         for (Employee employee : instance.getAll()) {
             for (Project pro : employee.getProjects()) {
@@ -49,7 +49,7 @@ public class EmployeeDAO {
         return null;
     }
 
-    public static Set<Employee> byDepartmentWithoutProjects(DepartmentType departmentType) {
+    public static Set<Employee> employeesByDepartmentWithoutProjects(DepartmentType departmentType) {
         Set<Employee> result = new HashSet<>();
         for (Employee employee : instance.getAll()) {
             if (employee.getDepartment().getType() == departmentType) {
@@ -59,7 +59,7 @@ public class EmployeeDAO {
         return result;
     }
 
-    public static Set<Employee> byTeamLead(Employee lead) {
+    public static Set<Employee> employeesByTeamLead(Employee lead) {
         Set<Employee> result = new HashSet<>();
         for (Employee employee : instance.getAll()) {
             for (Project project : employee.getProjects()) {
@@ -72,7 +72,7 @@ public class EmployeeDAO {
         return result;
     }
 
-    public static Set<Employee> byCustomerProjects(Customer customer) {
+    public static Set<Employee> employeesByCustomerProjects(Customer customer) {
         Set<Employee> result = new HashSet<>();
         for (Employee employeeFromDAO : instance.getAll()) {
             for (Project project : employeeFromDAO.getProjects()) {
@@ -83,7 +83,7 @@ public class EmployeeDAO {
         return result;
     }
 
-    public static Set<Employee> byProjectEmployee(Employee employee) {
+    public static Set<Employee> employeesByProjectEmployee(Employee employee) {
         Set<Employee> result = new HashSet<>();
         for (Employee employeeFromDAO : instance.getAll()) {
             for (Project project : employeeFromDAO.getProjects()) {
@@ -95,7 +95,7 @@ public class EmployeeDAO {
         return result;
     }
 
-    public static Set<Employee> withoutProject() {
+    public static Set<Employee> employeesWithoutProject() {
         Set<Employee> result = new HashSet<>();
         for (Employee employee : instance.getAll()) {
             if (employee.getProjects().isEmpty()) {
@@ -105,7 +105,7 @@ public class EmployeeDAO {
         return result;
     }
 
-    public static Set<Employee> leadsByEmployee(Employee employee) {
+    public static Set<Employee> teamLeadsByEmployee(Employee employee) {
         Set<Employee> result = new HashSet<>();
         for (Project project : employee.getProjects()) {
             if (identifyTeamLead(project) != null) {

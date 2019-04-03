@@ -26,7 +26,7 @@ public class ProjectDAO {
         return projects;
     }
 
-    public static Set<Project> byCustomer(Customer customer) {
+    public static Set<Project> projectsByCustomer(Customer customer) {
         Set<Project> result = new HashSet<>();
         for (Project project : getInstance().getAll()) {
             if (project.getCustomer().equals(customer))

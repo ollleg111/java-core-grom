@@ -19,7 +19,7 @@ public class Controller {
 
     //список сотрудников, работающих над заданным проектом
     public Set<Employee> employeesByProject(String projectName) {
-        return EmployeeDAO.byProject(projectName);
+        return EmployeeDAO.employeesByProject(projectName);
     }
 
     //список проектов, в которых учавствует заданный сотрудник
@@ -29,37 +29,37 @@ public class Controller {
 
     //список сотрудников из заданного отдела, не учавствующих ни в одном проекте
     public Set<Employee> employeesByDepartmentWithoutProjects(DepartmentType departmentType) {
-        return EmployeeDAO.byDepartmentWithoutProjects(departmentType);
+        return EmployeeDAO.employeesByDepartmentWithoutProjects(departmentType);
     }
 
     //список сотрудников, не учавствующих ни в одном проекте
     public Set<Employee> employeesWithoutProject() {
-        return EmployeeDAO.withoutProject();
+        return EmployeeDAO.employeesWithoutProject();
     }
 
     //список подчиненных для заданного руководителя (по всем проектам, в которых он учавствует)
     public Set<Employee> employeesByTeamLead(Employee lead) {
-        return EmployeeDAO.byTeamLead(lead);
+        return EmployeeDAO.employeesByTeamLead(lead);
     }
 
     //список руководителей для заданного сотрудника (по всем проектам, в которых он руководит)
     public Set<Employee> teamLeadsByEmployee(Employee employee) {
-        return EmployeeDAO.leadsByEmployee(employee);
+        return EmployeeDAO.teamLeadsByEmployee(employee);
     }
 
     //список сотрудников, учавствующих в тех же проектах, что и заданный сотрудник
     public Set<Employee> employeesByProjectEmployee(Employee employee) {
-        return EmployeeDAO.byProjectEmployee(employee);
+        return EmployeeDAO.employeesByProjectEmployee(employee);
     }
 
     //список проектов, выполняемых для заданного заказчика
     public Set<Project> projectsByCustomer(Customer customer) {
-        return ProjectDAO.byCustomer(customer);
+        return ProjectDAO.projectsByCustomer(customer);
     }
 
     //список сотрудников, учавствующих в проектах выполняемых для данного заказчика
     public Set<Employee> employeesByCustomerProjects(Customer customer) {
-        return EmployeeDAO.byCustomerProjects(customer);
+        return EmployeeDAO.employeesByCustomerProjects(customer);
     }
 }
 
