@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Solution {
 
-    public void copyFileContent(String fileFromPath, String fileToPath) throws /*FileNotFoundException*/Exception {
+    public void transferSentences(String fileFromPath, String fileToPath) throws /*FileNotFoundException*/Exception {
         //проверить что файлы есть
         //проверить права
         //считать контент файла From

@@ -1,42 +1,49 @@
 package lesson34.hw3;
 
+
+import org.apache.commons.io.IOUtils;
+
 import java.io.*;
 
 public class Solution {
 
-    public void copyFileContent(String fileFromPath, String fileToPath) throws /*FileNotFoundException*/Exception {
-        //проверить что файлы есть
-        //проверить права
-        //считать контент файла From
-        //записать контент в файл To
+    public void copyFileContent(String fileFromPath, String fileToPath) throws Exception {
 
         validate(fileFromPath, fileToPath);
-        writeToFile(fileToPath, readFromFile(fileFromPath));
-    }
 
-    private StringBuffer readFromFile(String path) {
-        StringBuffer res = new StringBuffer();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+        File fileFrom = new File(fileFromPath);
+        File fileTo = new File(fileToPath);
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileFrom));
+             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileTo))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-
-                res.append(line);
-                res.append("\n");
+                bufferedWriter.write(line);
+                bufferedWriter.write("\n");
             }
-            res.replace(res.length() - 1, res.length(), "");
         } catch (FileNotFoundException e) {
             System.out.println("File does not exist " + e.getMessage());
         } catch (IOException e) {
-            System.err.println("Reading from file " + path + " failed " + e.getMessage());
+            System.err.println("Reading from file " + fileFrom + " failed " + e.getMessage());
         }
-        return res;
     }
 
-    private void writeToFile(String path, StringBuffer contentToWrite) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
-            bufferedWriter.append(contentToWrite);
+    public void copyFileContentApacheIO(String fileFromPath, String fileToPath) throws Exception {
+
+        validate(fileFromPath, fileToPath);
+
+        File fileFrom = new File(fileFromPath);
+        File fileTo = new File(fileToPath);
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileFrom));
+             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileTo))) {
+
+            IOUtils.copy(bufferedReader, bufferedWriter);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist " + e.getMessage());
         } catch (IOException e) {
-            System.err.println("Can not write to file " + e.getMessage());
+            System.err.println("Reading from file " + fileFrom + " failed " + e.getMessage());
         }
     }
 
