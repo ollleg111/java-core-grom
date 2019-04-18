@@ -61,9 +61,8 @@ public class EmployeeDAO {
             if (department.getType().equals(departmentType)) {
                 for (Employee employee : instance.getAll()) {
                     if (employee.getProjects().isEmpty() &&
-                            employee.getDepartment().getType().equals(departmentType)) {
+                            employee.getDepartment().getType().equals(departmentType))
                         result.add(employee);
-                    }
                 }
             }
         }
