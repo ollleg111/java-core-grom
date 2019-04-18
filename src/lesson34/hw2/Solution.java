@@ -7,21 +7,40 @@ public class Solution {
     public void transferSentences(String fileFromPath, String fileToPath, String word) throws Exception {
 
         validate(fileFromPath, fileToPath);
-        readFromFile(fileFromPath, word);
-//        writeToFile(fileToPath, readFromFile(fileFromPath));
+
+        StringBuffer stringBufferFrom = readFromFile(fileFromPath);
+        StringBuffer stringBufferTo = readFromFile(fileToPath);
+
+        StringBuffer fileFromContent = new StringBuffer();
+        StringBuffer fileToContent = new StringBuffer();
+
+        String[] sentences = stringBufferFrom.toString().split("\\.");
+
+        for (String str : sentences) {
+            if (isSentences(str, word)) {
+                fileToContent.append(str).append(".");
+            } else {
+                fileFromContent.append(str).append(".");
+            }
+        }
+        try {
+            writeToFile(fileToPath, fileToContent);
+            writeToFile(fileFromPath, fileFromContent);
+        } catch (Exception e) {
+            writeToFile(fileToPath, stringBufferTo);
+            writeToFile(fileToPath, stringBufferFrom);
+        }
     }
 
-    private StringBuffer readFromFile(String path, String word) {
+    private StringBuffer readFromFile(String path) {
         StringBuffer res = new StringBuffer();
+
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 res.append(line);
                 res.append("\n");
             }
-            String sentence = isSentences(res, word);
-            System.out.println(" 3 " + sentence);
-
         } catch (FileNotFoundException e) {
             System.out.println("File does not exist " + e.getMessage());
         } catch (IOException e) {
@@ -30,40 +49,26 @@ public class Solution {
         return res;
     }
 
-    private String isSentences(StringBuffer resString, String word) {
-        String res;
-        for (int i = 0; i < resString.length(); i++) {
-            if (resString.charAt(i) == '.') {
-                for (int j = i + 1; j < resString.length(); j++) {
-                    if (resString.charAt(j) == '.') {
-                        res = resString.substring(i + 1, j);
-
-                        if (res.contains(word) && res.length() > 10)
-                            System.out.println(" 2 " + res);
-                        return res;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
     private void writeToFile(String path, StringBuffer contentToWrite) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, false))) {
             bufferedWriter.append(contentToWrite);
         } catch (IOException e) {
             System.err.println("Can not write to file " + e.getMessage());
         }
     }
 
-//    private void deleteStringFileFrom(String path) {
-//        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, false))) {
-//            bufferedWriter.append("");
-//
-//        } catch (IOException e) {
-//            System.out.println("deleting file " + path + " failed");
-//        }
-//    }
+    private boolean isSentences(String sentence, String word) {
+        String[] words = sentence.trim().split(" ");
+
+        if (words.length <= 10)
+            return false;
+
+        for (String str : words) {
+            if (str != null && str.equals(word))
+                return true;
+        }
+        return false;
+    }
 
     private void validate(String fileFromPath, String fileToPath) throws Exception {
 
