@@ -42,18 +42,29 @@ public class EmployeeDAO {
     }
 
     public static Set<Project> projectsByEmployee(Employee employee) {
-        for (Employee employeeFromDAO : instance.getAll()) {
-            if (employeeFromDAO.equals(employee))
-                return employee.getProjects();
-        }
-        return null;
+//        for (Employee employeeFromDAO : instance.getAll()) {
+//            if (employeeFromDAO.equals(employee))
+//                return employee.getProjects();
+//        }
+//        return null;
+        return employee.getProjects();
     }
 
     public static Set<Employee> employeesByDepartmentWithoutProjects(DepartmentType departmentType) {
         Set<Employee> result = new HashSet<>();
-        for (Employee employee : instance.getAll()) {
-            if (employee.getDepartment().getType() == departmentType) {
-                result.add(employee);
+//        for (Employee employee : instance.getAll()) {
+//            if (employee.getDepartment().getType().equals(departmentType)) {
+//                result.add(employee);
+//            }
+//        }
+        for (Department department : DepartmentDAO.getInstance().getAll()) {
+            if (department.getType().equals(departmentType)) {
+                for (Employee employee : instance.getAll()) {
+                    if (employee.getProjects().isEmpty() &&
+                            employee.getDepartment().getType().equals(departmentType)) {
+                        result.add(employee);
+                    }
+                }
             }
         }
         return result;
@@ -61,14 +72,16 @@ public class EmployeeDAO {
 
     public static Set<Employee> employeesByTeamLead(Employee lead) {
         Set<Employee> result = new HashSet<>();
-        for (Employee employee : instance.getAll()) {
-            for (Project project : employee.getProjects()) {
-                if (lead.getProjects().contains(project) &&
-                        !employee.getPosition().equals(Position.TEAM_LEAD) &&
-                        !employee.getPosition().equals(Position.LEAD_DESIGNER))
-                    result.add(employee);
-            }
-        }
+//        for (Employee employee : instance.getAll()) {
+//            for (Project project : employee.getProjects()) {
+//                if (lead.getProjects().contains(project) &&
+//                        !employee.getPosition().equals(Position.TEAM_LEAD) &&
+//                        !employee.getPosition().equals(Position.LEAD_DESIGNER))
+//                    result.add(employee);
+//            }
+//        }
+        if (lead.getPosition().equals(Position.TEAM_LEAD))
+            result.addAll(employeesByProjectEmployee(lead));
         return result;
     }
 

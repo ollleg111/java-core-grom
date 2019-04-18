@@ -29,7 +29,7 @@ public class ReadFileByConsolePath {
             reader = new FileReader(path);
             bufferedReader = new BufferedReader(reader);
             String line;
-            
+
             while ((line = bufferedReader.readLine()) != null) {
                 System.out.println(line);
             }
