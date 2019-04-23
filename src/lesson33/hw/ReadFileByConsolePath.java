@@ -25,11 +25,9 @@ public class ReadFileByConsolePath {
 
     private static void readFile(String path) {
 
-        FileReader reader = null;
         BufferedReader bufferedReader = null;
         try {
-            reader = new FileReader(path);
-            bufferedReader = new BufferedReader(reader);
+            bufferedReader = new BufferedReader(new FileReader(path));
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
@@ -42,7 +40,6 @@ public class ReadFileByConsolePath {
             System.err.println("Can't read file by path " + path);
         } finally {
             IOUtils.closeQuietly(bufferedReader);
-            IOUtils.closeQuietly(reader);
         }
     }
 }
