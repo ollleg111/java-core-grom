@@ -8,39 +8,36 @@ public class Solution {
 
         validate(fileFromPath, fileToPath);
 
-        StringBuffer stringBufferFrom = readFromFile(fileFromPath);
-        StringBuffer stringBufferTo = readFromFile(fileToPath);
+        String[] sentences = readFromFile(fileFromPath).toString().split(".");
 
-        StringBuffer fileFromContent = new StringBuffer();
-        StringBuffer fileToContent = new StringBuffer();
-
-        String[] sentences = readFromFile(fileFromPath).toString().split("\\.");
-
-        for (String str : sentences) {
-            if (isSentences(str, word)) {
-                fileToContent.append(str).append(".");
-            } else {
-                fileFromContent.append(str).append(".");
-            }
-        }
         try {
-            writeToFile(fileToPath, fileToContent);
-            writeToFile(fileFromPath, fileFromContent);
+
+            StringBuffer sentencesWithWord = new StringBuffer();
+            String fileContent = "";
+            for (String sentence : sentences) {
+
+                if (sentence.contains(word) && sentence.length() > 10) {
+                    sentencesWithWord.append(sentence).append(".");
+                    fileContent = fileContent.replace(sentencesWithWord + ".", "");
+                }
+            }
+            writeToFiles(fileFromPath, readFromFile(fileFromPath));
+            writeToFiles(fileToPath, sentencesWithWord);
         } catch (Exception e) {
-            writeToFile(fileToPath, stringBufferTo);
-            writeToFile(fileToPath, stringBufferFrom);
+            System.out.println("Write to file failure");
         }
     }
 
     private StringBuffer readFromFile(String path) {
         StringBuffer res = new StringBuffer();
-
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
+
                 res.append(line);
                 res.append("\n");
             }
+            res.replace(res.length() - 1, res.length(), "");
         } catch (FileNotFoundException e) {
             System.out.println("File does not exist " + e.getMessage());
         } catch (IOException e) {
@@ -49,25 +46,12 @@ public class Solution {
         return res;
     }
 
-    private void writeToFile(String path, StringBuffer contentToWrite) {
+    private void writeToFiles(String path, StringBuffer contentToWrite) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, false))) {
             bufferedWriter.append(contentToWrite);
         } catch (IOException e) {
             System.err.println("Can not write to file " + e.getMessage());
         }
-    }
-
-    private boolean isSentences(String sentence, String word) {
-        String[] words = sentence.trim().split(" ");
-
-        if (words.length <= 10)
-            return false;
-
-        for (String str : words) {
-            if (str != null && str.equals(word))
-                return true;
-        }
-        return false;
     }
 
     private void validate(String fileFromPath, String fileToPath) throws Exception {
