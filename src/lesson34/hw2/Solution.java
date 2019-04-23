@@ -8,21 +8,26 @@ public class Solution {
 
         validate(fileFromPath, fileToPath);
 
-        String[] sentences = readFromFile(fileFromPath).toString().split(".");
+        String fileContent = readFromFile(fileFromPath).toString();
+
+        String[] sentences = fileContent.split(".");
 
         try {
 
             StringBuffer sentencesWithWord = new StringBuffer();
-            String fileContent = "";
+            StringBuffer stringBuffer = new StringBuffer();
+
             for (String sentence : sentences) {
 
                 if (sentence.contains(word) && sentence.length() > 10) {
                     sentencesWithWord.append(sentence).append(".");
                     fileContent = fileContent.replace(sentencesWithWord + ".", "");
+                    stringBuffer.append(fileContent);
                 }
             }
-            writeToFiles(fileFromPath, readFromFile(fileFromPath));
+            writeToFiles(fileFromPath, stringBuffer);
             writeToFiles(fileToPath, sentencesWithWord);
+
         } catch (Exception e) {
             System.out.println("Write to file failure");
         }
