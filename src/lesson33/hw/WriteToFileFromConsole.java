@@ -8,7 +8,6 @@ public class WriteToFileFromConsole {
 
     public void writeToFileFromConsole(String path) {
 
-        String stopWriting = "wr";
         FileReader fileReader;
         try {
             fileReader = new FileReader(path);
@@ -18,21 +17,15 @@ public class WriteToFileFromConsole {
         }
         System.out.println("Enter file content to write in the file: ");
 
-        InputStreamReader reader = new InputStreamReader(System.in);
-        BufferedReader bufferedReader = new BufferedReader(reader);
-
-        FileWriter writer = null;
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = null;
 
         try {
-            writer = new FileWriter(path, true);
-            bufferedWriter = new BufferedWriter(writer);
-
+            bufferedWriter = new BufferedWriter(new FileWriter(path, true));
             bufferedWriter.append("\n");
 
             String str;
-            while (!((str = bufferedReader.readLine()).equals(stopWriting))) {
-
+            while (!((str = bufferedReader.readLine()).equals("wr"))) {
                 bufferedWriter.append(str);
                 bufferedWriter.append("\n");
             }
@@ -42,8 +35,8 @@ public class WriteToFileFromConsole {
         } finally {
 
             IOUtils.closeQuietly(fileReader);
+            IOUtils.closeQuietly(bufferedReader);
             IOUtils.closeQuietly(bufferedWriter);
-            IOUtils.closeQuietly(writer);
         }
     }
 }
