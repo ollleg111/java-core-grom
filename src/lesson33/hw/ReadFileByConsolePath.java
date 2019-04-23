@@ -13,6 +13,8 @@ public class ReadFileByConsolePath {
         try {
             String input = bufferedReader.readLine();
             readFile(input);
+        }catch (FileNotFoundException e){
+            System.err.println("File not found");
         } catch (IOException e) {
             System.err.println("Reading from keyboard failed " + e.getMessage());
             return;

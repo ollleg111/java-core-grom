@@ -14,7 +14,7 @@ public class Solution {
         StringBuffer fileFromContent = new StringBuffer();
         StringBuffer fileToContent = new StringBuffer();
 
-        String[] sentences = stringBufferFrom.toString().split("\\.");
+        String[] sentences = readFromFile(fileFromPath).toString().split("\\.");
 
         for (String str : sentences) {
             if (isSentences(str, word)) {
