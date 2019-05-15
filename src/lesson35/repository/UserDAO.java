@@ -2,7 +2,7 @@ package lesson35.repository;
 
 import lesson35.model.User;
 
-public class UserRepository {
+public class UserDAO extends DAO{
     //считывние данных - с файла
     //обработка данных - маппинг данных
 

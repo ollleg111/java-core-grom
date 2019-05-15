@@ -2,13 +2,21 @@ package lesson35.model;
 
 import java.util.Date;
 
-public class Order {
+public class Order extends IdObject{
     private long id;
     private User user;
     private Room room;
     private Date dateFrom;
     private Date dateTo;
     private double moneyPaid;
+
+    public Order(User user, Room room, Date dateFrom, Date dateTo, double moneyPaid) {
+        this.user = user;
+        this.room = room;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.moneyPaid = moneyPaid;
+    }
 
     public Order(long id, User user, Room room, Date dateFrom, Date dateTo, double moneyPaid) {
         this.id = id;
@@ -41,5 +49,21 @@ public class Order {
 
     public double getMoneyPaid() {
         return moneyPaid;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", room=" + room +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                ", moneyPaid=" + moneyPaid +
+                '}';
     }
 }

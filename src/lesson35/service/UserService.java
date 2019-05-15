@@ -1,16 +1,16 @@
 package lesson35.service;
 
 import lesson35.model.User;
-import lesson35.repository.UserRepository;
+import lesson35.repository.UserDAO;
 
 public class UserService {
 
-    private UserRepository userRepository = new UserRepository();
+    private UserDAO userDAO = new UserDAO();
 
     public User registerUser(User user){
 
         //check business logic
         //if logic ok
-        return userRepository.registerUser(user);
+        return userDAO.registerUser(user);
     }
 }

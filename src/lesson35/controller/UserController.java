@@ -8,6 +8,17 @@ import java.util.logging.Filter;
 
 public class UserController {
 
+
+    private UserService userService = new UserService();
+
+    public User registerUser(User user) {
+
+        return userService.registerUser(user);
+    }
+
+
+
+
     private void findHoteByName(String name) {
     }
 
@@ -27,12 +38,7 @@ public class UserController {
 
     }
 
-    private UserService userService = new UserService();
 
-    public User registerUser(User user) {
-
-        return userService.registerUser(user);
-    }
 
     private void login(String userName, String password) {
 
