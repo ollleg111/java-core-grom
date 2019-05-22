@@ -7,8 +7,7 @@ public class User extends IdObject {
     private String country;
     private UserType userType;
 
-    public User(long id, String userName, String password, String country, UserType userType) {
-        this.id = id;
+    public User(String userName, String password, String country, UserType userType) {
         this.userName = userName;
         this.password = password;
         this.country = country;

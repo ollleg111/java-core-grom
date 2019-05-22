@@ -4,7 +4,7 @@ public class RuntimeExceptionExample {
 
     public static void main(String[] args) {
 
-        //arthmetic exception
+        //arithmetic exception
         arithmeticException(2);
 
         try {

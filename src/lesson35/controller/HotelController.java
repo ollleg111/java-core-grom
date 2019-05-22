@@ -6,4 +6,6 @@ public class HotelController {
 
     private HotelService hotelService = new HotelService();
 
+
+
 }

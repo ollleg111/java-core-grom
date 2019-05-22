@@ -8,7 +8,6 @@ import java.util.logging.Filter;
 
 public class UserController {
 
-
     private UserService userService = new UserService();
 
     public User registerUser(User user) {
@@ -20,6 +19,7 @@ public class UserController {
 
 
     private void findHoteByName(String name) {
+
     }
 
     private void findHotelByCity(String city) {
