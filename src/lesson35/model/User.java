@@ -1,6 +1,6 @@
 package lesson35.model;
 
-public class User extends IdObject {
+public class User extends Id {
     private long id;
     private String userName;
     private String password;

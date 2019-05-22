@@ -2,7 +2,7 @@ package lesson35.model;
 
 import java.util.Date;
 
-public class Order extends IdObject{
+public class Order extends Id {
     private long id;
     private User user;
     private Room room;
@@ -31,6 +31,11 @@ public class Order extends IdObject{
         return id;
     }
 
+    @Override
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public User getUser() {
         return user;
     }
@@ -49,10 +54,6 @@ public class Order extends IdObject{
 
     public double getMoneyPaid() {
         return moneyPaid;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     @Override

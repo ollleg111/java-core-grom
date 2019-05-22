@@ -3,7 +3,7 @@ package lesson35.controller;
 import lesson35.service.UserService;
 import lesson35.model.User;
 
-import java.util.Collection;
+import java.util.Map;
 import java.util.logging.Filter;
 
 public class UserController {
@@ -18,7 +18,7 @@ public class UserController {
 
 
 
-    private void findHoteByName(String name) {
+    private void findHotelByName(String name) {
 
     }
 
@@ -26,9 +26,9 @@ public class UserController {
 
     }
 
-    Collection findRooms(Filter filter) {
-        return null;
-    }
+//    private Map <User>findRooms(Filter filter) {
+//        return null;
+//    }
 
     private void bookRoom(long roomId, long userId, long hotelId) {
 

@@ -1,6 +1,6 @@
 package lesson35.model;
 
-public class Hotel extends IdObject{
+public class Hotel extends Id {
     private long id;
     private String name;
     private String country;

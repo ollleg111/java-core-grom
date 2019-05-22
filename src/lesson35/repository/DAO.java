@@ -1,27 +1,34 @@
 package lesson35.repository;
 
-public abstract class DAO {
+import lesson35.exceptions.InternalServerException;
+import lesson35.model.Id;
 
-    public long genaratorID(){
+public abstract class DAO<T extends Id> {
 
+    abstract T mapToObject(String[] array) throws InternalServerException;
+
+    abstract String path();
+
+
+    public long genaratorId() {
+        //TODO
         return 0;
     }
 
-    public long findById(long id){
-
+    public long findById(long id) {
+        //TODO
         return 0;
     }
 
-    public void add(){
-
-
+    public T add(T t) throws Exception {
+        //TODO
+        return null;
     }
 
-    public void delete(){
-
+    public void delete(long id) throws Exception {
+        //TODO
 
     }
-
 
 
 }
