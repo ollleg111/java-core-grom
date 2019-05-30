@@ -1,6 +1,6 @@
 package lesson35.model;
 
-public class Hotel extends Id {
+public class Hotel extends IdEntity {
     private long id;
     private String name;
     private String country;
@@ -26,6 +26,7 @@ public class Hotel extends Id {
         this.street = street;
     }
 
+    @Override
     public long getId() {
         return id;
     }

@@ -1,29 +1,56 @@
 package lesson35.repository;
 
-import lesson35.constants.Constant;
-import lesson35.exceptions.InternalServerException;
-import lesson35.model.Id;
+import lesson35.constants.Constants;
 import lesson35.model.User;
 
-public class UserDAO extends DAO{
-    //считывние данных - с файла
-    //обработка данных - маппинг данных
+import java.util.ArrayList;
+
+public class UserDAO extends GeneralDAO<User> {
 
     @Override
-    String path() {
-        return Constant.USER_DB_PATH;
+    public void setPath(String path) {
+        setPath(Constants.USER_DB_PATH);
     }
 
     @Override
-    Id mapToObject(String[] array) throws InternalServerException {
-
-        throw new InternalServerException("!!!!");
+    public User map(String obj) {
+        return null;
     }
 
-    public User registerUser(User user) {
-
-        //save user to db (file)
-        return user;
+    @Override
+    public String reverseMap(User obj) {
+        return null;
     }
 
+    @Override
+    public ArrayList<User> getAll() {
+        return super.getAll();
+    }
+
+    @Override
+    public User findById(long id) {
+        return super.findById(id);
+    }
+
+    @Override
+    public User find(User user) {
+        return super.find(user);
+    }
+
+    @Override
+    public void remove(User user) throws Exception {
+        super.remove(user);
+    }
+
+    @Override
+    public boolean isExistObject(User user) {
+        //TODO
+        return super.isExistObject(user);
+    }
+
+    @Override
+    public User create(User user) throws Exception {
+        //TODO
+        return super.create(user);
+    }
 }

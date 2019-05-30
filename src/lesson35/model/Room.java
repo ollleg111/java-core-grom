@@ -2,7 +2,7 @@ package lesson35.model;
 
 import java.util.Date;
 
-public class Room extends Id {
+public class Room extends IdEntity {
     private long id;
     private int numberOfGuests;
     private double price;
@@ -30,6 +30,7 @@ public class Room extends Id {
         this.hotel = hotel;
     }
 
+    @Override
     public long getId() {
         return id;
     }

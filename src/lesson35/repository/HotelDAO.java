@@ -1,42 +1,60 @@
 package lesson35.repository;
 
-import lesson35.constants.Constant;
-import lesson35.exceptions.InternalServerException;
+import lesson35.constants.Constants;
 import lesson35.model.Hotel;
-import lesson35.model.Id;
 
-public class HotelDAO extends DAO {
+import java.util.ArrayList;
 
-    @Override
-    String path() {
-        return Constant.HOTEL_DB_PATH;
+public class HotelDAO extends GeneralDAO<Hotel> {
+
+    public HotelDAO() {
+        setPath(Constants.HOTEL_DB_PATH);
     }
 
     @Override
-    Id mapToObject(String[] array) throws InternalServerException {
-        //TODO
-        throw new InternalServerException("!!!!");
+    public void setPath(String path) {
+        super.setPath(path);
     }
 
-    public static Hotel findHotelByName(String name) throws Exception {
+    @Override
+    public boolean isExistObject(Hotel hotel) {
+        return super.isExistObject(hotel);
+    }
 
+    @Override
+    public ArrayList<Hotel> getAll() {
+        return super.getAll();
+    }
+
+    @Override
+    public Hotel findById(long id) {
+        return super.findById(id);
+    }
+
+    @Override
+    public Hotel find(Hotel hotel) {
+        return super.find(hotel);
+    }
+
+    @Override
+    public void remove(Hotel hotel) throws Exception {
+        super.remove(hotel);
+    }
+
+    @Override
+    public Hotel create(Hotel hotel) throws Exception {
+        return super.create(hotel);
+    }
+
+    @Override
+    public Hotel map(String obj) {
         //TODO
         return null;
     }
 
-    public Hotel findHotelByCity(String city) throws Exception{
+    @Override
+    public String reverseMap(Hotel obj) {
         //TODO
         return null;
     }
-
-    public Hotel add(Hotel hotel) throws Exception{
-        //TODO
-        return null;
-    }
-
-    public void delete(long id) throws Exception{
-
-        //TODO
-    }
-
 }

@@ -1,29 +1,56 @@
 package lesson35.repository;
 
-import lesson35.constants.Constant;
-import lesson35.exceptions.InternalServerException;
-import lesson35.model.Id;
+import lesson35.constants.Constants;
+import lesson35.model.Order;
 
-public class OrderDAO extends DAO {
+import java.util.ArrayList;
 
-    @Override
-    String path() {
-        return Constant.ORDER_DB_PATH;
-    }
+public class OrderDAO extends GeneralDAO<Order> {
 
     @Override
-    Id mapToObject(String[] array) throws InternalServerException {
-
-        throw new InternalServerException("!!!!");
+    public void setPath(String path) {
+        setPath(Constants.ORDER_DB_PATH);
     }
 
-    public void bookRoom(long roomId, long userId, long hotelId) throws Exception{
-
-
+    @Override
+    public Order map(String obj) {
+        return null;
     }
 
-    public void cancelReserve(long roomId, long userId) throws Exception{
+    @Override
+    public ArrayList<Order> getAll() {
+        return super.getAll();
+    }
 
+    @Override
+    public Order findById(long id) {
+        return super.findById(id);
+    }
 
+    @Override
+    public Order find(Order order) {
+        return super.find(order);
+    }
+
+    @Override
+    public void remove(Order order) throws Exception {
+        super.remove(order);
+    }
+
+    @Override
+    public Order create(Order order) throws Exception {
+        return super.create(order);
+    }
+
+    @Override
+    public boolean isExistObject(Order order) {
+        //TODO
+        return super.isExistObject(order);
+    }
+
+    @Override
+    public String reverseMap(Order obj) {
+        //TODO
+        return null;
     }
 }

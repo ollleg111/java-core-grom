@@ -9,9 +9,14 @@ public class DemoUser {
 
         UserController userController = new UserController();
 
-        User user = new User("Oleg", "0000", "Ukraine", UserType.USER);
+        User user = new User("Oleg", "2301", "Ukraine", UserType.USER);
 
-        System.out.println(userController.registerUser(user));
+        try {
+            System.out.println(userController.registerUser(user));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

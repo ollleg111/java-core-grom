@@ -57,7 +57,7 @@ public class HashSetTest {
         list.add(order3);
         list.add(order4);
 //
-//        for (Order order : list) {
+//        for (Ord order : list) {
 //            System.out.println(order.toString());
 //        }
 

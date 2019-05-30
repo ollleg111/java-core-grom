@@ -1,6 +1,6 @@
 package lesson35.model;
 
-public class User extends Id {
+public class User extends IdEntity {
     private long id;
     private String userName;
     private String password;
@@ -14,6 +14,15 @@ public class User extends Id {
         this.userType = userType;
     }
 
+    public User(long id, String userName, String password, String country, UserType userType) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.country = country;
+        this.userType = userType;
+    }
+
+    @Override
     public long getId() {
         return id;
     }

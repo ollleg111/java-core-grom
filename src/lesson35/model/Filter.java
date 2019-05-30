@@ -3,7 +3,6 @@ package lesson35.model;
 import java.util.Date;
 
 public class Filter {
-
     private int numberOfGuests;
     private double price;
     private boolean breakfastIncluded;
