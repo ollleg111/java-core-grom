@@ -13,11 +13,6 @@ public class RoomDAO extends GeneralDAO<Room> {
     }
 
     @Override
-    public String reverseMap(Room obj) {
-        return null;
-    }
-
-    @Override
     public ArrayList<Room> getAll() {
         return super.getAll();
     }
@@ -39,6 +34,7 @@ public class RoomDAO extends GeneralDAO<Room> {
 
     @Override
     public Room create(Room room) throws Exception {
+        //TODO
         return super.create(room);
     }
 
@@ -50,6 +46,12 @@ public class RoomDAO extends GeneralDAO<Room> {
 
     @Override
     public Room map(String obj) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public String reverseMap(Room obj) {
         //TODO
         return null;
     }

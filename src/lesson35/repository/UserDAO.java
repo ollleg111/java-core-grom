@@ -13,16 +13,6 @@ public class UserDAO extends GeneralDAO<User> {
     }
 
     @Override
-    public User map(String obj) {
-        return null;
-    }
-
-    @Override
-    public String reverseMap(User obj) {
-        return null;
-    }
-
-    @Override
     public ArrayList<User> getAll() {
         return super.getAll();
     }
@@ -52,5 +42,17 @@ public class UserDAO extends GeneralDAO<User> {
     public User create(User user) throws Exception {
         //TODO
         return super.create(user);
+    }
+
+    @Override
+    public User map(String obj) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public String reverseMap(User obj) {
+        //TODO
+        return null;
     }
 }

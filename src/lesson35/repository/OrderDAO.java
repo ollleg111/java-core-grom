@@ -13,11 +13,6 @@ public class OrderDAO extends GeneralDAO<Order> {
     }
 
     @Override
-    public Order map(String obj) {
-        return null;
-    }
-
-    @Override
     public ArrayList<Order> getAll() {
         return super.getAll();
     }
@@ -39,6 +34,7 @@ public class OrderDAO extends GeneralDAO<Order> {
 
     @Override
     public Order create(Order order) throws Exception {
+        //TODO
         return super.create(order);
     }
 
@@ -46,6 +42,12 @@ public class OrderDAO extends GeneralDAO<Order> {
     public boolean isExistObject(Order order) {
         //TODO
         return super.isExistObject(order);
+    }
+
+    @Override
+    public Order map(String obj) {
+        //TODO
+        return null;
     }
 
     @Override

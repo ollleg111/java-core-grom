@@ -51,6 +51,5 @@ public class OrderService {
 
         if (order.getDateFrom() == null)
             throw new BadRequestException("Wrong date over");
-
     }
 }

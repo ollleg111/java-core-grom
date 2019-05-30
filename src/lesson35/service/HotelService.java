@@ -26,7 +26,7 @@ public class HotelService {
     /*
     for users
      */
-    public Hotel findHoteByName(String name) throws Exception {
+    public Hotel findHotelByName(String name) throws Exception {
         for (Hotel hotel : hotelDAO.getAll()) {
             if (hotel.getName().equals(name))
                 return hotel;

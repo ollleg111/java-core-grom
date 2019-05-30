@@ -1,5 +1,6 @@
 package lesson35.repository;
 
+import lesson35.exceptions.BadRequestException;
 import lesson35.model.IdEntity;
 
 import java.io.*;
@@ -69,7 +70,17 @@ public abstract class GeneralDAO<T extends IdEntity> {
     }
 
     public void remove(T t) throws Exception {
-    //TODO
+        if (!isExistObject(t))
+            throw new BadRequestException("Do not have the object");
+
+        ArrayList<T> arrayList = getAll();
+
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path,false))){
+            //TODO
+        }catch (Exception e){
+            System.out.println("!!!");
+        }
+
     }
 
     public boolean isExistObject(T t) {
