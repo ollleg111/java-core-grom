@@ -23,8 +23,8 @@ public class HotelController {
     /*
     for users
      */
-    public Hotel findHoteByName(String name) throws Exception {
-        return hotelService.findHoteByName(name);
+    public Hotel findHotelByName(String name) throws Exception {
+        return hotelService.findHotelByName(name);
     }
 
     /*
