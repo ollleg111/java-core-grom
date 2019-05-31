@@ -34,24 +34,23 @@ public class OrderDAO extends GeneralDAO<Order> {
 
     @Override
     public Order create(Order order) throws Exception {
-        //TODO
         return super.create(order);
     }
 
     @Override
     public boolean isExistObject(Order order) {
-        //TODO
         return super.isExistObject(order);
     }
 
     @Override
-    public Order map(String obj) {
+    public Order map(String object) {
+        String[] arr = object.split("([,][ ])");
         //TODO
         return null;
     }
 
     @Override
-    public String reverseMap(Order obj) {
+    public String toFile(Order object) {
         //TODO
         return null;
     }

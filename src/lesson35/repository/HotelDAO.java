@@ -47,13 +47,14 @@ public class HotelDAO extends GeneralDAO<Hotel> {
     }
 
     @Override
-    public Hotel map(String obj) {
+    public Hotel map(String object) {
+        String[] arr = object.split("([,][ ])");
         //TODO
         return null;
     }
 
     @Override
-    public String reverseMap(Hotel obj) {
+    public String toFile(Hotel object) {
         //TODO
         return null;
     }

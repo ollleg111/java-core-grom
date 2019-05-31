@@ -2,6 +2,7 @@ package lesson35.repository;
 
 import lesson35.constants.Constants;
 import lesson35.model.User;
+import lesson35.model.UserType;
 
 import java.util.ArrayList;
 
@@ -34,25 +35,24 @@ public class UserDAO extends GeneralDAO<User> {
 
     @Override
     public boolean isExistObject(User user) {
-        //TODO
         return super.isExistObject(user);
     }
 
     @Override
     public User create(User user) throws Exception {
-        //TODO
         return super.create(user);
     }
 
     @Override
-    public User map(String obj) {
-        //TODO
-        return null;
+    public User map(String object) {
+        String[] arr = object.split("([,][ ])");
+        return new User(Long.parseLong(arr[0]), arr[1], arr[2], arr[3], UserType.valueOf(arr[4]));
     }
 
     @Override
-    public String reverseMap(User obj) {
-        //TODO
-        return null;
+    public String toFile(User object) {
+        return object.getId() + ", " + object.getUserName() + ", " + object.getPassword() + ", "
+                + object.getCountry() + ", " + object.getUserType();
+        //TODO?????
     }
 }

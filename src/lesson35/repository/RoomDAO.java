@@ -34,24 +34,23 @@ public class RoomDAO extends GeneralDAO<Room> {
 
     @Override
     public Room create(Room room) throws Exception {
-        //TODO
         return super.create(room);
     }
 
     @Override
     public boolean isExistObject(Room room) {
-        //TODO
         return super.isExistObject(room);
     }
 
     @Override
-    public Room map(String obj) {
+    public Room map(String object) {
+        String[] arr = object.split("([,][ ])");
         //TODO
         return null;
     }
 
     @Override
-    public String reverseMap(Room obj) {
+    public String toFile(Room object) {
         //TODO
         return null;
     }

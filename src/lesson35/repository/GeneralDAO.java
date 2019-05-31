@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
 
 public abstract class GeneralDAO<T extends IdEntity> {
 
-    public abstract T map(String obj);
+    public abstract T map(String object);
 
-    public abstract String reverseMap(T obj);
+    public abstract String toFile(T object);
 
     private String path;
 
@@ -34,12 +34,9 @@ public abstract class GeneralDAO<T extends IdEntity> {
         StringBuffer stringBuffer = new StringBuffer();
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
-
             String line;
-
             while ((line = bufferedReader.readLine()) != null)
                 stringBuffer.append(line).append("\r\n");
-
 
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -75,9 +72,9 @@ public abstract class GeneralDAO<T extends IdEntity> {
 
         ArrayList<T> arrayList = getAll();
 
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path,false))){
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, false))) {
             //TODO
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("!!!");
         }
 
@@ -103,7 +100,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
             if (file.length() != 0)
                 bufferedWriter.newLine();
 
-            bufferedWriter.append(reverseMap(t));
+            bufferedWriter.append(toFile(t));
 
         } catch (IOException e) {
             System.err.println("Object with ID " + " wasn't saved");
