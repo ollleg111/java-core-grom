@@ -20,5 +20,4 @@ public class OrderController {
     public void cancelReservation(long roomId, long userId) throws Exception {
         orderService.cancelReservation(roomId, userId);
     }
-
 }

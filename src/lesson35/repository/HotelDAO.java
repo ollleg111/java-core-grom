@@ -47,7 +47,7 @@ public class HotelDAO extends GeneralDAO<Hotel> {
     }
 
     @Override
-    public Hotel map(String object) {
+    public Hotel mapping(String object) {
         String[] arr = object.split("([,][ ])");
         //TODO
         return null;

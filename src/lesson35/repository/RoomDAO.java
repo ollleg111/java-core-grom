@@ -1,6 +1,7 @@
 package lesson35.repository;
 
 import lesson35.constants.Constants;
+import lesson35.model.Hotel;
 import lesson35.model.Room;
 
 import java.util.ArrayList;
@@ -43,9 +44,13 @@ public class RoomDAO extends GeneralDAO<Room> {
     }
 
     @Override
-    public Room map(String object) {
+    public Room mapping(String object) {
         String[] arr = object.split("([,][ ])");
+
         //TODO
+
+//        return new Room(Integer.parseInt(arr[0]), Double.parseDouble(arr[1]), Boolean.parseBoolean(arr[2]),
+//        Boolean.parseBoolean(arr[3]), Date dateAvailableFrom, Hotel hotel);
         return null;
     }
 

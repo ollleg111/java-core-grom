@@ -44,7 +44,7 @@ public class UserDAO extends GeneralDAO<User> {
     }
 
     @Override
-    public User map(String object) {
+    public User mapping(String object) {
         String[] arr = object.split("([,][ ])");
         return new User(Long.parseLong(arr[0]), arr[1], arr[2], arr[3], UserType.valueOf(arr[4]));
     }

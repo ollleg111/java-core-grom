@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public abstract class GeneralDAO<T extends IdEntity> {
 
-    public abstract T map(String object);
+    public abstract T mapping(String object);
 
     public abstract String toFile(T object);
 
@@ -22,7 +22,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
     private void generatorId(T t) {
         boolean isTrue = true;
         while (isTrue) {
-            long id = (long) (Math.random() * 5000000);
+            long id = (long) (Math.random() * 1000000);
             t.setId(id);
 
             if (findById(t.getId()) == null)
@@ -92,7 +92,9 @@ public abstract class GeneralDAO<T extends IdEntity> {
     }
 
     public T create(T t) throws Exception {
+
         generatorId(t);
+
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
 
             File file = new File(path);
@@ -114,7 +116,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
 
         for (String str : objects) {
 
-            arrayList.add(map(str));
+            arrayList.add(mapping(str));
         }
         return arrayList;
     }

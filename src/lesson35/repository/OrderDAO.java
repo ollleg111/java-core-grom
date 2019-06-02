@@ -43,7 +43,7 @@ public class OrderDAO extends GeneralDAO<Order> {
     }
 
     @Override
-    public Order map(String object) {
+    public Order mapping(String object) {
         String[] arr = object.split("([,][ ])");
         //TODO
         return null;

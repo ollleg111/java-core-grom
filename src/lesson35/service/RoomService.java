@@ -36,9 +36,9 @@ public class RoomService {
         ArrayList<Room> findByPets = findByPets(filter.isPetsAllowed(),findByBreakfast);
         ArrayList<Room> findByDate = findByDate(filter.getDateAvailableFrom(),findByPets);
         ArrayList<Room> findByCountry = findByCountry(filter.getCountry(),findByDate);
-        ArrayList<Room> findByCity = findByCity(filter.getCity(),findByCountry);
-
-        return findByCity;
+        //ArrayList<Room> findByCity = findByCity(filter.getCity(),findByCountry);
+        //return findByCity;
+        return findByCity(filter.getCity(),findByCountry);
     }
 
     private ArrayList<Room> findByNumbersOfGuests(Integer numbers, ArrayList<Room> rooms) {
@@ -94,7 +94,6 @@ public class RoomService {
             throw new BadRequestException("Breakfast not included");
 
         if (room.getDateAvailableFrom() == null)
-            throw new BadRequestException("Wrong enter date")
-                    ;
+            throw new BadRequestException("Wrong enter date");
     }
 }

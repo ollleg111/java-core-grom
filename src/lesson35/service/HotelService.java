@@ -59,5 +59,4 @@ public class HotelService {
         if (hotel.getStreet() == null)
             throw new BadRequestException("Wrong street");
     }
-
 }
