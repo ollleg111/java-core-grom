@@ -28,17 +28,27 @@ public class RoomService {
     }
 
     public ArrayList<Room> findFromFilter(Filter filter) {
-        ArrayList<Room> allSearchingRooms = roomDAO.getAll();
 
+        /*
+        ArrayList<Room> allSearchingRooms = roomDAO.getAll();
         ArrayList<Room> findByNumbersOfGuests = findByNumbersOfGuests(filter.getNumberOfGuests(), allSearchingRooms);
         ArrayList<Room> findByPrice = findByPrice(filter.getPrice(),findByNumbersOfGuests);
         ArrayList<Room> findByBreakfast = findByBreakfast(filter.isBreakfastIncluded(),findByPrice);
         ArrayList<Room> findByPets = findByPets(filter.isPetsAllowed(),findByBreakfast);
         ArrayList<Room> findByDate = findByDate(filter.getDateAvailableFrom(),findByPets);
         ArrayList<Room> findByCountry = findByCountry(filter.getCountry(),findByDate);
-        //ArrayList<Room> findByCity = findByCity(filter.getCity(),findByCountry);
-        //return findByCity;
-        return findByCity(filter.getCity(),findByCountry);
+        ArrayList<Room> findByCity = findByCity(filter.getCity(),findByCountry);
+        return findByCity;
+        */
+
+        return findByCity(filter.getCity(),
+                findByCountry(filter.getCountry(),
+                        findByDate(filter.getDateAvailableFrom(),
+                                findByPets(filter.isPetsAllowed(),
+                                        findByBreakfast(filter.isBreakfastIncluded(),
+                                                findByPrice(filter.getPrice(),
+                                                        findByNumbersOfGuests(filter.getNumberOfGuests(),
+                                                                roomDAO.getAll())))))));
     }
 
     private ArrayList<Room> findByNumbersOfGuests(Integer numbers, ArrayList<Room> rooms) {
