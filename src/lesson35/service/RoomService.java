@@ -28,7 +28,6 @@ public class RoomService {
     }
 
     public ArrayList<Room> findFromFilter(Filter filter) {
-
         /*
         ArrayList<Room> allSearchingRooms = roomDAO.getAll();
         ArrayList<Room> findByNumbersOfGuests = findByNumbersOfGuests(filter.getNumberOfGuests(), allSearchingRooms);
@@ -40,7 +39,6 @@ public class RoomService {
         ArrayList<Room> findByCity = findByCity(filter.getCity(),findByCountry);
         return findByCity;
         */
-
         return findByCity(filter.getCity(),
                 findByCountry(filter.getCountry(),
                         findByDate(filter.getDateAvailableFrom(),
@@ -51,45 +49,80 @@ public class RoomService {
                                                                 roomDAO.getAll())))))));
     }
 
-    private ArrayList<Room> findByNumbersOfGuests(Integer numbers, ArrayList<Room> rooms) {
+    private ArrayList<Room> findByNumbersOfGuests(Integer numbers, ArrayList<Room> arrayList) {
         ArrayList<Room> findRooms = new ArrayList<>();
-        //TODO
+        if (numbers == null)
+            return arrayList;
+        for (Room room : arrayList) {
+            if (room.getNumberOfGuests() == numbers)
+                findRooms.add(room);
+        }
         return findRooms;
     }
 
-    private ArrayList<Room> findByPrice(Double price, ArrayList<Room> rooms) {
+    private ArrayList<Room> findByPrice(Double price, ArrayList<Room> arrayList) {
         ArrayList<Room> findRooms = new ArrayList<>();
-        //TODO
+        if (price == null)
+            return arrayList;
+        for (Room room : arrayList) {
+            if (room.getPrice() <= price)
+                findRooms.add(room);
+        }
         return findRooms;
     }
 
-    private ArrayList<Room> findByBreakfast(Boolean isBreakfast, ArrayList<Room> rooms) {
+    private ArrayList<Room> findByBreakfast(Boolean isBreakfast, ArrayList<Room> arrayList) {
         ArrayList<Room> findRooms = new ArrayList<>();
-        //TODO
+        if (isBreakfast == null)
+            return arrayList;
+        for (Room room : arrayList) {
+            if (room.isBreakfastIncluded() == isBreakfast)
+                findRooms.add(room);
+        }
         return findRooms;
     }
 
-    private ArrayList<Room> findByPets(Boolean isPets, ArrayList<Room> rooms) {
+    private ArrayList<Room> findByPets(Boolean isPets, ArrayList<Room> arrayList) {
         ArrayList<Room> findRooms = new ArrayList<>();
-        //TODO
+        if (isPets == null)
+            return arrayList;
+        for (Room room : arrayList) {
+            if (room.isPetsAllowed() == isPets)
+                findRooms.add(room);
+        }
         return findRooms;
     }
 
-    private ArrayList<Room> findByDate(Date date, ArrayList<Room> rooms) {
+    private ArrayList<Room> findByDate(Date date, ArrayList<Room> arrayList) {
         ArrayList<Room> findRooms = new ArrayList<>();
-        //TODO
+        if (date == null)
+            return arrayList;
+        for (Room room : arrayList) {
+            if (room.getDateAvailableFrom() == date)
+                findRooms.add(room);
+        }
         return findRooms;
     }
 
-    private ArrayList<Room> findByCountry(String country, ArrayList<Room> rooms) {
+    private ArrayList<Room> findByCountry(String country, ArrayList<Room> arrayList) {
         ArrayList<Room> findRooms = new ArrayList<>();
-        //TODO
+        if (country == null)
+            return arrayList;
+        for (Room room : arrayList) {
+            if (room.getHotel().getCountry().equals(country))
+                findRooms.add(room);
+        }
         return findRooms;
     }
 
-    private ArrayList<Room> findByCity(String city, ArrayList<Room> rooms) {
+    private ArrayList<Room> findByCity(String city, ArrayList<Room> arrayList) {
         ArrayList<Room> findRooms = new ArrayList<>();
-        //TODO
+        if (city == null)
+            return arrayList;
+        for (Room room : arrayList) {
+            if (room.getHotel().getCity().equals(city))
+                findRooms.add(room);
+        }
         return findRooms;
     }
 
