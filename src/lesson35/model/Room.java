@@ -11,7 +11,8 @@ public class Room extends IdEntity {
     private Date dateAvailableFrom;
     private Hotel hotel;
 
-    public Room(int numberOfGuests, double price, boolean breakfastIncluded, boolean petsAllowed, Date dateAvailableFrom, Hotel hotel) {
+    public Room(int numberOfGuests, double price, boolean breakfastIncluded, boolean petsAllowed,
+                Date dateAvailableFrom, Hotel hotel) {
         this.numberOfGuests = numberOfGuests;
         this.price = price;
         this.breakfastIncluded = breakfastIncluded;
@@ -20,7 +21,8 @@ public class Room extends IdEntity {
         this.hotel = hotel;
     }
 
-    public Room(long id, int numberOfGuests, double price, boolean breakfastIncluded, boolean petsAllowed, Date dateAvailableFrom, Hotel hotel) {
+    public Room(long id, int numberOfGuests, double price, boolean breakfastIncluded, boolean petsAllowed,
+                Date dateAvailableFrom, Hotel hotel) {
         this.id = id;
         this.numberOfGuests = numberOfGuests;
         this.price = price;
@@ -62,6 +64,10 @@ public class Room extends IdEntity {
 
     public Hotel getHotel() {
         return hotel;
+    }
+
+    public void setDateAvailableFrom(Date dateAvailableFrom) {
+        this.dateAvailableFrom = dateAvailableFrom;
     }
 
     @Override

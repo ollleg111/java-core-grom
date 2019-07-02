@@ -1,0 +1,6 @@
+101, First, Ukraine, Dnipro, Polya
+102, Second, Ukraine, Dnipro, Gagarina
+103, Turan, Ukraine, Odessa, Franka
+104, Hilton, Ukraine, Kiev, Sumska
+105, Pegas, Ukraine, Kiev, Viazova
+106, Portland, Ukraine, Rivne, Varshavska

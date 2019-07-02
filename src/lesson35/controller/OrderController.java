@@ -10,8 +10,8 @@ public class OrderController {
     /*
      for users
       */
-    public void bookRoom(long roomId, long userId, Date dateFrom, Date dateTo, double moneyPaid) throws Exception {
-        orderService.bookRoom(roomId, userId, dateFrom, dateTo, moneyPaid);
+    public void bookRoom(long roomId, long userId, long hotelId) throws Exception {
+        orderService.bookRoom(roomId, userId, hotelId);
     }
 
     /*

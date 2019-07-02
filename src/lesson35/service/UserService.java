@@ -9,12 +9,14 @@ public class UserService {
 
     private UserDAO userDAO = new UserDAO();
 
+    private User logInUser = null;
+
     /*
     for users
      */
     public User registerUser(User user) throws Exception {
         validate(user);
-        return userDAO.create(user);
+        return userDAO.save(user);
     }
 
     /*
@@ -22,8 +24,11 @@ public class UserService {
      */
     public User login(String userName, String password) throws Exception {
         for (User user : userDAO.getAll()) {
-            if (user.getUserName().equals(userName) && user.getPassword().equals(password))
+            if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+                logInUser = user;
                 return user;
+            }
+
         }
         throw new UserNotFoundException("User: " + userName + " does not exist");
     }
@@ -31,8 +36,9 @@ public class UserService {
     /*
     for users
      */
-    public void logout(){
-        //TODO
+    public void logout() {
+        if (logInUser != null)
+            logInUser = null;
     }
 
     private void validate(User user) throws BadRequestException {

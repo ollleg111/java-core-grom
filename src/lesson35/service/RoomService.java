@@ -17,7 +17,7 @@ public class RoomService {
      */
     public void addRoom(Room room) throws Exception {
         validate(room);
-        roomDAO.create(room);
+        roomDAO.save(room);
     }
 
     /*
@@ -27,18 +27,11 @@ public class RoomService {
         roomDAO.remove(roomDAO.findById(roomId));
     }
 
-    public ArrayList<Room> findFromFilter(Filter filter) {
-        /*
-        ArrayList<Room> allSearchingRooms = roomDAO.getAll();
-        ArrayList<Room> findByNumbersOfGuests = findByNumbersOfGuests(filter.getNumberOfGuests(), allSearchingRooms);
-        ArrayList<Room> findByPrice = findByPrice(filter.getPrice(),findByNumbersOfGuests);
-        ArrayList<Room> findByBreakfast = findByBreakfast(filter.isBreakfastIncluded(),findByPrice);
-        ArrayList<Room> findByPets = findByPets(filter.isPetsAllowed(),findByBreakfast);
-        ArrayList<Room> findByDate = findByDate(filter.getDateAvailableFrom(),findByPets);
-        ArrayList<Room> findByCountry = findByCountry(filter.getCountry(),findByDate);
-        ArrayList<Room> findByCity = findByCity(filter.getCity(),findByCountry);
-        return findByCity;
-        */
+    /*
+    for users
+     */
+    public ArrayList<Room> findRooms(Filter filter) {
+
         return findByCity(filter.getCity(),
                 findByCountry(filter.getCountry(),
                         findByDate(filter.getDateAvailableFrom(),

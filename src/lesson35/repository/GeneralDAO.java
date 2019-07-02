@@ -9,15 +9,19 @@ import java.util.regex.Pattern;
 
 public abstract class GeneralDAO<T extends IdEntity> {
 
+    private String path;
+
+    public GeneralDAO(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
     public abstract T mapping(String object);
 
     public abstract String toFile(T object);
-
-    private String path;
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 
     private void generatorId(T t) {
         boolean isTrue = true;
@@ -33,7 +37,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
     public ArrayList<T> getAll() {
         StringBuffer stringBuffer = new StringBuffer();
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(getPath()))) {
             String line;
             while ((line = bufferedReader.readLine()) != null)
                 stringBuffer.append(line).append("\r\n");
@@ -42,6 +46,18 @@ public abstract class GeneralDAO<T extends IdEntity> {
             System.err.println(e.getMessage());
         }
         return mapAll(stringBuffer);
+    }
+
+
+    private ArrayList<T> mapAll(StringBuffer stringBuffer) {
+        ArrayList<T> arrayList = new ArrayList<>();
+        String[] objects = Pattern.compile("\r\n").split(stringBuffer);
+
+        for (String str : objects) {
+
+            arrayList.add(mapping(str));
+        }
+        return arrayList;
     }
 
     public T findById(long id) {
@@ -72,10 +88,19 @@ public abstract class GeneralDAO<T extends IdEntity> {
 
         ArrayList<T> arrayList = getAll();
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, false))) {
-            //TODO
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(getPath(), false))) {
+            int count = 1;
+            for (T object : arrayList) {
+                if (!object.equals(t)) {
+                    bufferedWriter.append(toFile(object));
+
+                    if (arrayList.size() != count)
+                        bufferedWriter.newLine();
+                }
+                count++;
+            }
         } catch (Exception e) {
-            System.out.println("!!!");
+            System.out.println("Object with ID " +  t.getId() + " wasn't deleted");
         }
 
     }
@@ -91,11 +116,11 @@ public abstract class GeneralDAO<T extends IdEntity> {
         return false;
     }
 
-    public T create(T t) throws Exception {
+    public T save(T t) throws Exception {
 
         generatorId(t);
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(getPath(), true))) {
 
             File file = new File(path);
 
@@ -108,16 +133,5 @@ public abstract class GeneralDAO<T extends IdEntity> {
             System.err.println("Object with ID " + " wasn't saved");
         }
         return t;
-    }
-
-    private ArrayList<T> mapAll(StringBuffer stringBuffer) {
-        ArrayList<T> arrayList = new ArrayList<>();
-        String[] objects = Pattern.compile("\r\n").split(stringBuffer);
-
-        for (String str : objects) {
-
-            arrayList.add(mapping(str));
-        }
-        return arrayList;
     }
 }

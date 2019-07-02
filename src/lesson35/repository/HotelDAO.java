@@ -1,6 +1,5 @@
 package lesson35.repository;
 
-import lesson35.constants.Constants;
 import lesson35.model.Hotel;
 
 import java.util.ArrayList;
@@ -8,12 +7,7 @@ import java.util.ArrayList;
 public class HotelDAO extends GeneralDAO<Hotel> {
 
     public HotelDAO() {
-        setPath(Constants.HOTEL_DB_PATH);
-    }
-
-    @Override
-    public void setPath(String path) {
-        super.setPath(path);
+        super("Constants.HOTEL_DB_PATH");
     }
 
     @Override
@@ -42,20 +36,32 @@ public class HotelDAO extends GeneralDAO<Hotel> {
     }
 
     @Override
-    public Hotel create(Hotel hotel) throws Exception {
-        return super.create(hotel);
+    public Hotel save(Hotel hotel) throws Exception {
+        return super.save(hotel);
     }
 
     @Override
     public Hotel mapping(String object) {
         String[] arr = object.split("([,][ ])");
-        //TODO
-        return null;
+
+        long id = Long.parseLong(arr[0]);
+        String name = arr[1];
+        String country = arr[2];
+        String city = arr[3];
+        String street = arr[4];
+
+        return new Hotel(id, name, country, city, street);
     }
 
+    /*
+    public Hotel(long id, String name, String country, String city, String street) {
+    */
     @Override
     public String toFile(Hotel object) {
-        //TODO
-        return null;
+        return object.getId() + ", "
+                + object.getName() + ", "
+                + object.getCountry() + ", "
+                + object.getCity() + ", "
+                + object.getStreet();
     }
 }
