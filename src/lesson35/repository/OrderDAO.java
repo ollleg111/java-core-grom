@@ -7,7 +7,6 @@ import lesson35.model.User;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class OrderDAO extends GeneralDAO<Order> {
@@ -19,37 +18,6 @@ public class OrderDAO extends GeneralDAO<Order> {
     private UserDAO userDAO = new UserDAO();
     private RoomDAO roomDAO = new RoomDAO();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-
-    @Override
-    public ArrayList<Order> getAll() {
-        return super.getAll();
-    }
-
-    @Override
-    public Order findById(long id) {
-        return super.findById(id);
-    }
-
-    @Override
-    public Order find(Order order) {
-        return super.find(order);
-    }
-
-    @Override
-    public void remove(Order order) throws Exception {
-        super.remove(order);
-    }
-
-    @Override
-    public Order save(Order order) throws Exception {
-        return super.save(order);
-    }
-
-    @Override
-    public boolean isExistObject(Order order) {
-        return super.isExistObject(order);
-    }
 
     @Override
     public Order mapping(String object) {

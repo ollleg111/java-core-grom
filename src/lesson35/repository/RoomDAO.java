@@ -18,38 +18,15 @@ public class RoomDAO extends GeneralDAO<Room> {
     private HotelDAO hotelDAO = new HotelDAO();
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    @Override
-    public ArrayList<Room> getAll() {
-        return super.getAll();
-    }
-
-    @Override
-    public Room findById(long id) {
-        return super.findById(id);
-    }
-
-    @Override
-    public Room find(Room room) {
-        return super.find(room);
-    }
-
-    @Override
-    public void remove(Room room) throws Exception {
+    public void deleteRoom(Room room) throws Exception {
         super.remove(room);
     }
 
-    @Override
-    public Room save(Room room) throws Exception {
+    public Room addRoom(Room room) throws Exception {
         return super.save(room);
     }
 
-    @Override
-    public boolean isExistObject(Room room) {
-        return super.isExistObject(room);
-    }
-
     public void changeAvailableDate(long roomId, Date date) {
-
         Room room = findById(roomId);
         room.setDateAvailableFrom(date);
     }

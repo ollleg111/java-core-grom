@@ -1,6 +1,7 @@
 package lesson35.repository;
 
 import lesson35.constants.Constants;
+import lesson35.controller.Session;
 import lesson35.model.User;
 import lesson35.model.UserType;
 
@@ -10,9 +11,14 @@ public class UserDAO extends GeneralDAO<User> {
         super(Constants.USER_DB_PATH);
     }
 
-    /*
-    метод registerUser находится UserService
-     */
+    public User registerUser(User user) throws Exception {
+        return super.save(user);
+    }
+
+    public static boolean isAdmin(){
+        return (Session.getAuthorizedUser() != null &&
+                Session.getAuthorizedUser().getUserType() ==  UserType.ADMIN);
+    }
 
     @Override
     public User mapping(String object) {

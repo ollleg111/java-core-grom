@@ -54,12 +54,15 @@ public class DemoRoom {
             e.printStackTrace();
         }
 
+        /*
+        for users
+        */
         RoomController roomController = new RoomController();
-        Filter filter0 = new Filter(2, 1000, true,true, new Date(),
+        Filter filter0 = new Filter(2, 1000, true, true, new Date(),
                 "Ukraine", "Dnipro");
         System.out.println(roomController.findRooms(filter0));
 
-        Filter filter1 = new Filter(2, 1000, true,true, new Date(),
+        Filter filter1 = new Filter(2, 1000, true, true, new Date(),
                 "Ukraine", "Kiev");
         System.out.println(roomController.findRooms(filter1));
     }

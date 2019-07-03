@@ -17,14 +17,14 @@ public class RoomService {
      */
     public void addRoom(Room room) throws Exception {
         validate(room);
-        roomDAO.save(room);
+        roomDAO.addRoom(room);
     }
 
     /*
     only for administrators
      */
     public void deleteRoom(long roomId) throws Exception {
-        roomDAO.remove(roomDAO.findById(roomId));
+        roomDAO.deleteRoom(roomDAO.findById(roomId));
     }
 
     /*

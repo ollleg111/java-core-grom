@@ -3,7 +3,6 @@ package lesson35.demo;
 import lesson35.controller.HotelController;
 import lesson35.model.Hotel;
 import lesson35.repository.HotelDAO;
-import lesson35.service.HotelService;
 
 public class DemoHotel {
     public static void main(String[] args) {
@@ -17,25 +16,27 @@ public class DemoHotel {
 
         try {
             hotelDAO.save(hotel0);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             hotelDAO.save(hotel1);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }try {
+        }
+        try {
             hotelDAO.save(hotel2);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }try {
+        }
+        try {
             hotelDAO.save(hotel3);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             hotelDAO.save(hotel4);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -43,29 +44,29 @@ public class DemoHotel {
         for users
          */
         HotelController hotelController = new HotelController();
-        try{
+        try {
             hotelController.findHotelByCity("Dnipro");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        try{
+        try {
             hotelController.findHotelByCity("Kiev");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        try{
+        try {
             hotelController.findHotelByCity("Lviv");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        try{
+        try {
             hotelController.findHotelByName("First");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        try{
+        try {
             hotelController.findHotelByName("Second");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -108,7 +108,7 @@ public class DemoOrder {
         }
 
         try {
-            orderController.cancelReservation(room0.getId(),user0.getId());
+            orderController.cancelReservation(room0.getId(), user0.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }

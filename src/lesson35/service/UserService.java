@@ -1,5 +1,6 @@
 package lesson35.service;
 
+import lesson35.controller.Session;
 import lesson35.exceptions.BadRequestException;
 import lesson35.exceptions.UserNotFoundException;
 import lesson35.model.User;
@@ -9,14 +10,12 @@ public class UserService {
 
     private UserDAO userDAO = new UserDAO();
 
-    private User logInUser = null;
-
     /*
     for users
      */
     public User registerUser(User user) throws Exception {
         validate(user);
-        return userDAO.save(user);
+        return userDAO.registerUser(user);
     }
 
     /*
@@ -25,10 +24,8 @@ public class UserService {
     public User login(String userName, String password) throws Exception {
         for (User user : userDAO.getAll()) {
             if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
-                logInUser = user;
                 return user;
             }
-
         }
         throw new UserNotFoundException("User: " + userName + " does not exist");
     }
@@ -36,9 +33,19 @@ public class UserService {
     /*
     for users
      */
-    public void logout() {
-        if (logInUser != null)
-            logInUser = null;
+    public void logout() throws Exception {
+        if (Session.getAuthorizedUser() == null)
+            throw new BadRequestException("User is not authorized");
+        Session.setAuthorizedUser(null);
+    }
+
+    /*
+    for admin
+     */
+    //TODO хз
+    public void removeAccount(User user) throws Exception {
+        validate(user);
+        userDAO.remove(user);
     }
 
     private void validate(User user) throws BadRequestException {
@@ -54,5 +61,7 @@ public class UserService {
         if (user.getUserType() == null)
             throw new BadRequestException("Wrong user type");
     }
+
+
 }
 

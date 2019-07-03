@@ -17,66 +17,66 @@ public class DemoUser {
 
         try {
             userDAO.save(user0);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             userDAO.save(user1);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }try {
+        }
+        try {
             userDAO.save(user2);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }try {
+        }
+        try {
             userDAO.save(user3);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }try {
+        }
+        try {
             userDAO.save(user4);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+        /*
+        for users
+        */
         UserController userController = new UserController();
-        User user5= new User("ddd", "2222", "Ukraine", UserType.USER);
+        User user5 = new User("ddd", "2222", "Ukraine", UserType.USER);
         User user6 = new User("eee", "2222", "Ukraine", UserType.USER);
         User user7 = new User("fff", "2222", "Ukraine", UserType.USER);
 
         try {
             userController.registerUser(user5);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             userController.registerUser(user6);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             userController.registerUser(user7);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            userController.login(user6.getUserName(),user6.getPassword());
-        }
-        catch (Exception e){
+            userController.login(user6.getUserName(), user6.getPassword());
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            userController.login(user5.getUserName(),user5.getPassword());
-        }
-        catch (Exception e){
+            userController.login(user5.getUserName(), user5.getPassword());
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try {
             userController.logout();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -122,7 +122,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(getPath(), true))) {
 
-            File file = new File(path);
+            File file = new File(getPath());
 
             if (file.length() != 0)
                 bufferedWriter.newLine();

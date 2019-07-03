@@ -2,41 +2,17 @@ package lesson35.repository;
 
 import lesson35.model.Hotel;
 
-import java.util.ArrayList;
-
 public class HotelDAO extends GeneralDAO<Hotel> {
 
     public HotelDAO() {
         super("Constants.HOTEL_DB_PATH");
     }
 
-    @Override
-    public boolean isExistObject(Hotel hotel) {
-        return super.isExistObject(hotel);
-    }
-
-    @Override
-    public ArrayList<Hotel> getAll() {
-        return super.getAll();
-    }
-
-    @Override
-    public Hotel findById(long id) {
-        return super.findById(id);
-    }
-
-    @Override
-    public Hotel find(Hotel hotel) {
-        return super.find(hotel);
-    }
-
-    @Override
-    public void remove(Hotel hotel) throws Exception {
+    public void deleteHotel(Hotel hotel) throws Exception {
         super.remove(hotel);
     }
 
-    @Override
-    public Hotel save(Hotel hotel) throws Exception {
+    public Hotel addHotel(Hotel hotel) throws Exception {
         return super.save(hotel);
     }
 

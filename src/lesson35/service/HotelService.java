@@ -13,14 +13,14 @@ public class HotelService {
      */
     public void addHotel(Hotel hotel) throws Exception {
         validate(hotel);
-        hotelDAO.save(hotel);
+            hotelDAO.addHotel(hotel);
     }
 
     /*
     only for administrators
      */
     public void deleteHotel(long hotelId) throws Exception {
-        hotelDAO.remove(hotelDAO.findById(hotelId));
+        hotelDAO.deleteHotel(hotelDAO.findById(hotelId));
     }
 
     /*
