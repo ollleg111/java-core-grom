@@ -1,12 +1,12 @@
 package lesson35.repository;
 
 import lesson35.constants.Constants;
+import lesson35.exceptions.InternalServerException;
 import lesson35.model.Hotel;
 import lesson35.model.Room;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class RoomDAO extends GeneralDAO<Room> {
@@ -26,36 +26,43 @@ public class RoomDAO extends GeneralDAO<Room> {
         return super.save(room);
     }
 
-    public void changeAvailableDate(long roomId, Date date) {
+    public void changeAvailableDate(long roomId, Date date) throws Exception{
         Room room = findById(roomId);
         room.setDateAvailableFrom(date);
     }
 
     @Override
-    public Room mapping(String object) {
-        String[] arr = object.split("([,][ ])");
+    public Room mapping(String[] arr) throws InternalServerException {
+        Room room;
 
-        long id = Long.parseLong(arr[0]);
-        int numberOfGuests = Integer.parseInt(arr[1]);
-        double price = Double.parseDouble(arr[2]);
-        boolean breakfastIncluded = Boolean.parseBoolean(arr[3]);
-        boolean petsAllowed = Boolean.parseBoolean(arr[4]);
-
-        Date dateAvailableFrom = null;
         try {
-            dateAvailableFrom = simpleDateFormat.parse(arr[5]);
-        } catch (ParseException e) {
-            System.out.println("Wrong date format");
+            long id = Long.parseLong(arr[0]);
+            int numberOfGuests = Integer.parseInt(arr[1]);
+            double price = Double.parseDouble(arr[2]);
+            boolean breakfastIncluded = Boolean.parseBoolean(arr[3]);
+            boolean petsAllowed = Boolean.parseBoolean(arr[4]);
+
+            Date dateAvailableFrom = null;
+            try {
+                dateAvailableFrom = simpleDateFormat.parse(arr[5]);
+            } catch (ParseException e) {
+                System.out.println("Wrong date format");
+            }
+
+            Hotel hotel = hotelDAO.findById(Long.parseLong(arr[6]));
+
+        room = new Room(id, numberOfGuests, price, breakfastIncluded, petsAllowed, dateAvailableFrom, hotel);
+
+        } catch (Exception e) {
+            throw new InternalServerException("Invalid data from file " +
+                    Constants.ROOM_DB_PATH.getClass().getName());
         }
-
-        Hotel hotel = hotelDAO.findById(Long.parseLong(arr[6]));
-
-        return new Room(id, numberOfGuests, price, breakfastIncluded, petsAllowed, dateAvailableFrom, hotel);
+        return room;
     }
 
     /*
-    public Room(long id, int numberOfGuests, double price, boolean breakfastIncluded, boolean petsAllowed,
-    Date dateAvailableFrom, Hotel hotel) {
+    long id, int numberOfGuests, double price, boolean breakfastIncluded, boolean petsAllowed,
+    Date dateAvailableFrom, Hotel hotel
     */
     @Override
     public String toFile(Room object) {

@@ -1,6 +1,7 @@
 package lesson35.repository;
 
 import lesson35.exceptions.BadRequestException;
+import lesson35.exceptions.InternalServerException;
 import lesson35.model.IdEntity;
 
 import java.io.*;
@@ -19,11 +20,11 @@ public abstract class GeneralDAO<T extends IdEntity> {
         return path;
     }
 
-    public abstract T mapping(String object);
+    public abstract T mapping(String[] arr) throws InternalServerException;
 
     public abstract String toFile(T object);
 
-    private void generatorId(T t) {
+    private void generatorId(T t) throws Exception {
         boolean isTrue = true;
         while (isTrue) {
             long id = (long) (Math.random() * 1000000);
@@ -34,33 +35,22 @@ public abstract class GeneralDAO<T extends IdEntity> {
         }
     }
 
-    public ArrayList<T> getAll() {
-        StringBuffer stringBuffer = new StringBuffer();
+    public ArrayList<T> getAll() throws InternalServerException {
+        ArrayList<T> getAll = new ArrayList<>();
 
+        String line;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(getPath()))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null)
-                stringBuffer.append(line).append("\r\n");
-
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] oneLine = line.split(",");
+                getAll.add(mapping(oneLine));
+            }
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-        return mapAll(stringBuffer);
+        return getAll;
     }
 
-
-    private ArrayList<T> mapAll(StringBuffer stringBuffer) {
-        ArrayList<T> arrayList = new ArrayList<>();
-        String[] objects = Pattern.compile("\r\n").split(stringBuffer);
-
-        for (String str : objects) {
-
-            arrayList.add(mapping(str));
-        }
-        return arrayList;
-    }
-
-    public T findById(long id) {
+    public T findById(long id) throws Exception {
         ArrayList<T> arrayList = getAll();
 
         if (arrayList.size() == 0)
@@ -73,7 +63,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
         return null;
     }
 
-    public T find(T t) {
+    public T find(T t) throws Exception {
         for (T object : getAll()) {
             if (object != null && object.equals(t)) {
                 return object;
@@ -100,12 +90,12 @@ public abstract class GeneralDAO<T extends IdEntity> {
                 count++;
             }
         } catch (Exception e) {
-            System.out.println("Object with ID " +  t.getId() + " wasn't deleted");
+            System.out.println("Object with ID " + t.getId() + " wasn't deleted");
         }
 
     }
 
-    public boolean isExistObject(T t) {
+    public boolean isExistObject(T t) throws Exception {
         if (getAll().size() == 0)
             return false;
 

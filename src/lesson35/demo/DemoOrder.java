@@ -1,6 +1,7 @@
 package lesson35.demo;
 
 import lesson35.controller.OrderController;
+import lesson35.exceptions.InternalServerException;
 import lesson35.model.Hotel;
 import lesson35.model.Order;
 import lesson35.model.Room;
@@ -20,8 +21,18 @@ public class DemoOrder {
         RoomDAO roomDAO = new RoomDAO();
         OrderDAO orderDAO = new OrderDAO();
 
-        User user0 = userDAO.findById(201);
-        Room room0 = roomDAO.findById(312);
+        User user0 = null;
+        try {
+            user0 = userDAO.findById(201);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Room room0 = null;
+        try {
+            room0 = roomDAO.findById(312);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Date dateFrom = new Date();
 
@@ -43,8 +54,18 @@ public class DemoOrder {
             e.printStackTrace();
         }
 
-        User user1 = userDAO.findById(202);
-        Room room1 = roomDAO.findById(310);
+        User user1 = null;
+        try {
+            user1 = userDAO.findById(202);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Room room1 = null;
+        try {
+            room1 = roomDAO.findById(310);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Order order1 = new Order(user1, room1, dateFrom, dateTo, moneyPaid);
 
@@ -54,8 +75,18 @@ public class DemoOrder {
             e.printStackTrace();
         }
 
-        User user2 = userDAO.findById(203);
-        Room room2 = roomDAO.findById(301);
+        User user2 = null;
+        try {
+            user2 = userDAO.findById(203);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Room room2 = null;
+        try {
+            room2 = roomDAO.findById(301);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Order order2 = new Order(user2, room2, dateFrom, dateTo, moneyPaid);
 
@@ -65,8 +96,18 @@ public class DemoOrder {
             e.printStackTrace();
         }
 
-        User user3 = userDAO.findById(204);
-        Room room3 = roomDAO.findById(302);
+        User user3 = null;
+        try {
+            user3 = userDAO.findById(204);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Room room3 = null;
+        try {
+            room3 = roomDAO.findById(302);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Order order3 = new Order(user3, room3, dateFrom, dateTo, moneyPaid);
 
@@ -76,8 +117,18 @@ public class DemoOrder {
             e.printStackTrace();
         }
 
-        User user4 = userDAO.findById(205);
-        Room room4 = roomDAO.findById(303);
+        User user4 = null;
+        try {
+            user4 = userDAO.findById(205);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Room room4 = null;
+        try {
+            room4 = roomDAO.findById(303);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Order order4 = new Order(user4, room4, dateFrom, dateTo, moneyPaid);
 
@@ -113,7 +164,10 @@ public class DemoOrder {
             e.printStackTrace();
         }
 
-        System.out.println(orderDAO.getAll());
-        //TODO
+        try {
+            System.out.println(orderDAO.getAll());
+        } catch (InternalServerException e) {
+            e.printStackTrace();
+        }
     }
 }

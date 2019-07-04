@@ -2,6 +2,7 @@ package lesson35.repository;
 
 import lesson35.constants.Constants;
 import lesson35.controller.Session;
+import lesson35.exceptions.InternalServerException;
 import lesson35.model.User;
 import lesson35.model.UserType;
 
@@ -15,27 +16,34 @@ public class UserDAO extends GeneralDAO<User> {
         return super.save(user);
     }
 
-    public static boolean isAdmin(){
+    public static boolean isAdmin() {
         return (Session.getAuthorizedUser() != null &&
-                Session.getAuthorizedUser().getUserType() ==  UserType.ADMIN);
+                Session.getAuthorizedUser().getUserType() == UserType.ADMIN);
     }
 
     @Override
-    public User mapping(String object) {
-        String[] arr = object.split("([,][ ])");
+    public User mapping(String[] arr) throws InternalServerException {
+        User user;
 
-        long id = Long.parseLong(arr[0]);
-        String userName = arr[1];
-        String password = arr[2];
-        String country = arr[3];
+        try {
+            long id = Long.parseLong(arr[0]);
+            String userName = arr[1];
+            String password = arr[2];
+            String country = arr[3];
 
-        UserType userType = UserType.valueOf(arr[4]);
+            UserType userType = UserType.valueOf(arr[4]);
 
-        return new User(id, userName, password, country, userType);
+            user = new User(id, userName, password, country, userType);
+
+        } catch (Exception e) {
+            throw new InternalServerException("Invalid data from file " +
+                    Constants.USER_DB_PATH.getClass().getName());
+        }
+        return user;
     }
 
     /*
-    public User(long id, String userName, String password, String country, UserType userType) {
+    long id, String userName, String password, String country, UserType userType
     */
     @Override
     public String toFile(User object) {

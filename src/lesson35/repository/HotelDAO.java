@@ -1,5 +1,7 @@
 package lesson35.repository;
 
+import lesson35.constants.Constants;
+import lesson35.exceptions.InternalServerException;
 import lesson35.model.Hotel;
 
 public class HotelDAO extends GeneralDAO<Hotel> {
@@ -17,20 +19,26 @@ public class HotelDAO extends GeneralDAO<Hotel> {
     }
 
     @Override
-    public Hotel mapping(String object) {
-        String[] arr = object.split("([,][ ])");
+    public Hotel mapping(String[] arr) throws InternalServerException {
+        Hotel hotel;
 
-        long id = Long.parseLong(arr[0]);
-        String name = arr[1];
-        String country = arr[2];
-        String city = arr[3];
-        String street = arr[4];
+        try {
+            long id = Long.parseLong(arr[0]);
+            String name = arr[1];
+            String country = arr[2];
+            String city = arr[3];
+            String street = arr[4];
+            hotel = new Hotel(id, name, country, city, street);
 
-        return new Hotel(id, name, country, city, street);
+        } catch (Exception e) {
+            throw new InternalServerException("Invalid data from file " +
+                    Constants.HOTEL_DB_PATH.getClass().getName());
+        }
+        return hotel;
     }
 
     /*
-    public Hotel(long id, String name, String country, String city, String street) {
+    long id, String name, String country, String city, String street
     */
     @Override
     public String toFile(Hotel object) {
