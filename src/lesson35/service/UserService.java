@@ -1,6 +1,7 @@
 package lesson35.service;
 
 import lesson35.controller.Session;
+import lesson35.exceptions.AccessDeniedException;
 import lesson35.exceptions.BadRequestException;
 import lesson35.exceptions.UserNotFoundException;
 import lesson35.model.User;
@@ -33,9 +34,9 @@ public class UserService {
     /*
     for users
      */
-    public void logout() throws Exception {
+    public void logout() throws AccessDeniedException {
         if (Session.getAuthorizedUser() == null)
-            throw new BadRequestException("User is not authorized");
+            throw new AccessDeniedException("User is not authorized");
         Session.setAuthorizedUser(null);
     }
 
@@ -61,7 +62,5 @@ public class UserService {
         if (user.getUserType() == null)
             throw new BadRequestException("Wrong user type");
     }
-
-
 }
 

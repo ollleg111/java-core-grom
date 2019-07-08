@@ -1,7 +1,6 @@
 package lesson35.demo;
 
 import lesson35.controller.OrderController;
-import lesson35.exceptions.InternalServerException;
 import lesson35.model.Hotel;
 import lesson35.model.Order;
 import lesson35.model.Room;
@@ -44,7 +43,7 @@ public class DemoOrder {
 
         Date dateTo = gregorianCalendar.getTime();
 
-        double moneyPaid = room0.getPrice() * bookingDays;
+        double moneyPaid = (room0 != null ? room0.getPrice() : 0) * bookingDays;
 
         Order order0 = new Order(user0, room0, dateFrom, dateTo, moneyPaid);
 
@@ -166,7 +165,7 @@ public class DemoOrder {
 
         try {
             System.out.println(orderDAO.getAll());
-        } catch (InternalServerException e) {
+        } catch (java.io.IOException e) {
             e.printStackTrace();
         }
     }

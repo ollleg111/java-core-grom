@@ -5,8 +5,8 @@ import lesson35.model.Filter;
 import lesson35.model.Room;
 import lesson35.repository.RoomDAO;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class RoomService {
 
@@ -30,90 +30,16 @@ public class RoomService {
     /*
     for users
      */
-    public ArrayList<Room> findRooms(Filter filter) {
-
-        return findByCity(filter.getCity(),
-                findByCountry(filter.getCountry(),
-                        findByDate(filter.getDateAvailableFrom(),
-                                findByPets(filter.isPetsAllowed(),
-                                        findByBreakfast(filter.isBreakfastIncluded(),
-                                                findByPrice(filter.getPrice(),
-                                                        findByNumbersOfGuests(filter.getNumberOfGuests(),
-                                                                roomDAO.getAll())))))));
-    }
-
-    private ArrayList<Room> findByNumbersOfGuests(Integer numbers, ArrayList<Room> arrayList) {
-        ArrayList<Room> findRooms = new ArrayList<>();
-        if (numbers == null)
-            return arrayList;
-        for (Room room : arrayList) {
-            if (room.getNumberOfGuests() == numbers)
-                findRooms.add(room);
-        }
-        return findRooms;
-    }
-
-    private ArrayList<Room> findByPrice(Double price, ArrayList<Room> arrayList) {
-        ArrayList<Room> findRooms = new ArrayList<>();
-        if (price == null)
-            return arrayList;
-        for (Room room : arrayList) {
-            if (room.getPrice() <= price)
-                findRooms.add(room);
-        }
-        return findRooms;
-    }
-
-    private ArrayList<Room> findByBreakfast(Boolean isBreakfast, ArrayList<Room> arrayList) {
-        ArrayList<Room> findRooms = new ArrayList<>();
-        if (isBreakfast == null)
-            return arrayList;
-        for (Room room : arrayList) {
-            if (room.isBreakfastIncluded() == isBreakfast)
-                findRooms.add(room);
-        }
-        return findRooms;
-    }
-
-    private ArrayList<Room> findByPets(Boolean isPets, ArrayList<Room> arrayList) {
-        ArrayList<Room> findRooms = new ArrayList<>();
-        if (isPets == null)
-            return arrayList;
-        for (Room room : arrayList) {
-            if (room.isPetsAllowed() == isPets)
-                findRooms.add(room);
-        }
-        return findRooms;
-    }
-
-    private ArrayList<Room> findByDate(Date date, ArrayList<Room> arrayList) {
-        ArrayList<Room> findRooms = new ArrayList<>();
-        if (date == null)
-            return arrayList;
-        for (Room room : arrayList) {
-            if (room.getDateAvailableFrom() == date)
-                findRooms.add(room);
-        }
-        return findRooms;
-    }
-
-    private ArrayList<Room> findByCountry(String country, ArrayList<Room> arrayList) {
-        ArrayList<Room> findRooms = new ArrayList<>();
-        if (country == null)
-            return arrayList;
-        for (Room room : arrayList) {
-            if (room.getHotel().getCountry().equals(country))
-                findRooms.add(room);
-        }
-        return findRooms;
-    }
-
-    private ArrayList<Room> findByCity(String city, ArrayList<Room> arrayList) {
-        ArrayList<Room> findRooms = new ArrayList<>();
-        if (city == null)
-            return arrayList;
-        for (Room room : arrayList) {
-            if (room.getHotel().getCity().equals(city))
+    public ArrayList<Room> findRooms(Filter filter) throws IOException {
+        ArrayList<Room> findRooms = roomDAO.getAll();
+        for (Room room : findRooms) {
+            if (((Integer) filter.getNumberOfGuests() == null || filter.getNumberOfGuests() == room.getNumberOfGuests()) &&
+                    ((Double) filter.getPrice() == null || filter.getPrice() == room.getPrice()) &&
+                    ((Boolean) filter.isBreakfastIncluded() == null || filter.isBreakfastIncluded() == room.isBreakfastIncluded()) &&
+                    ((Boolean) filter.isPetsAllowed() == null || filter.isPetsAllowed() == room.isPetsAllowed()) &&
+                    (filter.getDateAvailableFrom() == null || filter.getDateAvailableFrom() == room.getDateAvailableFrom()) &&
+                    (filter.getCountry() == null || filter.getCountry().equals(room.getHotel().getCountry())) &&
+                    (filter.getCity() == null || filter.getCity().equals(room.getHotel().getCity())));
                 findRooms.add(room);
         }
         return findRooms;

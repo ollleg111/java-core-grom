@@ -1,8 +1,9 @@
 package lesson35.repository;
 
 import lesson35.constants.Constants;
-import lesson35.exceptions.InternalServerException;
 import lesson35.model.Hotel;
+
+import java.io.IOException;
 
 public class HotelDAO extends GeneralDAO<Hotel> {
 
@@ -19,7 +20,7 @@ public class HotelDAO extends GeneralDAO<Hotel> {
     }
 
     @Override
-    public Hotel mapping(String[] arr) throws InternalServerException {
+    public Hotel mapping(String[] arr) throws IOException {
         Hotel hotel;
 
         try {
@@ -31,7 +32,7 @@ public class HotelDAO extends GeneralDAO<Hotel> {
             hotel = new Hotel(id, name, country, city, street);
 
         } catch (Exception e) {
-            throw new InternalServerException("Invalid data from file " +
+            throw new IOException("Invalid data from file " +
                     Constants.HOTEL_DB_PATH.getClass().getName());
         }
         return hotel;
@@ -41,7 +42,7 @@ public class HotelDAO extends GeneralDAO<Hotel> {
     long id, String name, String country, String city, String street
     */
     @Override
-    public String toFile(Hotel object) {
+    public String toString(Hotel object) {
         return object.getId() + ", "
                 + object.getName() + ", "
                 + object.getCountry() + ", "

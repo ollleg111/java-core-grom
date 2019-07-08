@@ -1,11 +1,11 @@
 package lesson35.repository;
 
 import lesson35.constants.Constants;
-import lesson35.exceptions.InternalServerException;
 import lesson35.model.Order;
 import lesson35.model.Room;
 import lesson35.model.User;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +21,7 @@ public class OrderDAO extends GeneralDAO<Order> {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     @Override
-    public Order mapping(String[] arr) throws InternalServerException {
+    public Order mapping(String[] arr) throws IOException {
         Order order;
 
         try {
@@ -48,7 +48,7 @@ public class OrderDAO extends GeneralDAO<Order> {
             order = new Order(id, user, room, dateFrom, dateTo, moneyPaid);
 
         } catch (Exception e) {
-            throw new InternalServerException("Invalid data from file " +
+            throw new IOException("Invalid data from file " +
                     Constants.ORDER_DB_PATH.getClass().getName());
         }
         return order;
@@ -58,7 +58,7 @@ public class OrderDAO extends GeneralDAO<Order> {
     long id, User user, Room room, Date dateFrom, Date dateTo, double moneyPaid
     */
     @Override
-    public String toFile(Order object) {
+    public String toString(Order object) {
         return object.getId() + ", "
                 + object.getUser().getId() + ", "
                 + object.getRoom().getId() + ", "

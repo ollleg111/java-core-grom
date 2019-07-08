@@ -1,10 +1,10 @@
 package lesson35.repository;
 
 import lesson35.constants.Constants;
-import lesson35.exceptions.InternalServerException;
 import lesson35.model.Hotel;
 import lesson35.model.Room;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,17 +22,17 @@ public class RoomDAO extends GeneralDAO<Room> {
         super.remove(room);
     }
 
-    public Room addRoom(Room room) throws Exception {
+    public Room addRoom(Room room) throws IOException {
         return super.save(room);
     }
 
-    public void changeAvailableDate(long roomId, Date date) throws Exception{
+    public void changeAvailableDate(long roomId, Date date) throws Exception {
         Room room = findById(roomId);
         room.setDateAvailableFrom(date);
     }
 
     @Override
-    public Room mapping(String[] arr) throws InternalServerException {
+    public Room mapping(String[] arr) throws IOException {
         Room room;
 
         try {
@@ -51,10 +51,10 @@ public class RoomDAO extends GeneralDAO<Room> {
 
             Hotel hotel = hotelDAO.findById(Long.parseLong(arr[6]));
 
-        room = new Room(id, numberOfGuests, price, breakfastIncluded, petsAllowed, dateAvailableFrom, hotel);
+            room = new Room(id, numberOfGuests, price, breakfastIncluded, petsAllowed, dateAvailableFrom, hotel);
 
         } catch (Exception e) {
-            throw new InternalServerException("Invalid data from file " +
+            throw new IOException("Invalid data from file " +
                     Constants.ROOM_DB_PATH.getClass().getName());
         }
         return room;
@@ -65,7 +65,7 @@ public class RoomDAO extends GeneralDAO<Room> {
     Date dateAvailableFrom, Hotel hotel
     */
     @Override
-    public String toFile(Room object) {
+    public String toString(Room object) {
         return object.getId() + ", "
                 + object.getNumberOfGuests() + ", "
                 + object.getPrice() + ", "

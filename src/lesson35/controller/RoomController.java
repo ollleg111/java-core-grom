@@ -5,6 +5,7 @@ import lesson35.model.Room;
 import lesson35.repository.UserDAO;
 import lesson35.service.RoomService;
 
+import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class RoomController {
     /*
     for users
     */
-    public ArrayList<Room> findRooms(Filter filter) {
+    public ArrayList<Room> findRooms(Filter filter) throws Exception{
         if (filter != null)
             return roomService.findRooms(filter);
         return null;

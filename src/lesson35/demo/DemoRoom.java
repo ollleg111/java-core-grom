@@ -60,10 +60,18 @@ public class DemoRoom {
         RoomController roomController = new RoomController();
         Filter filter0 = new Filter(2, 1000, true, true, new Date(),
                 "Ukraine", "Dnipro");
-        System.out.println(roomController.findRooms(filter0));
+        try {
+            System.out.println(roomController.findRooms(filter0));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Filter filter1 = new Filter(2, 1000, true, true, new Date(),
                 "Ukraine", "Kiev");
-        System.out.println(roomController.findRooms(filter1));
+        try {
+            System.out.println(roomController.findRooms(filter1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

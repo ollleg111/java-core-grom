@@ -2,9 +2,10 @@ package lesson35.repository;
 
 import lesson35.constants.Constants;
 import lesson35.controller.Session;
-import lesson35.exceptions.InternalServerException;
 import lesson35.model.User;
 import lesson35.model.UserType;
+
+import java.io.IOException;
 
 public class UserDAO extends GeneralDAO<User> {
 
@@ -22,7 +23,7 @@ public class UserDAO extends GeneralDAO<User> {
     }
 
     @Override
-    public User mapping(String[] arr) throws InternalServerException {
+    public User mapping(String[] arr) throws IOException {
         User user;
 
         try {
@@ -36,7 +37,7 @@ public class UserDAO extends GeneralDAO<User> {
             user = new User(id, userName, password, country, userType);
 
         } catch (Exception e) {
-            throw new InternalServerException("Invalid data from file " +
+            throw new IOException("Invalid data from file " +
                     Constants.USER_DB_PATH.getClass().getName());
         }
         return user;
@@ -46,7 +47,7 @@ public class UserDAO extends GeneralDAO<User> {
     long id, String userName, String password, String country, UserType userType
     */
     @Override
-    public String toFile(User object) {
+    public String toString(User object) {
         return object.getId() + ", "
                 + object.getUserName() + ", "
                 + object.getPassword() + ", "

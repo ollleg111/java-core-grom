@@ -13,7 +13,7 @@ public class HotelService {
      */
     public void addHotel(Hotel hotel) throws Exception {
         validate(hotel);
-            hotelDAO.addHotel(hotel);
+        hotelDAO.addHotel(hotel);
     }
 
     /*

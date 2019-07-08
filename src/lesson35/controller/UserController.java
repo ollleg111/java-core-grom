@@ -21,12 +21,12 @@ public class UserController {
         Session.setAuthorizedUser(userService.login(userName, password));
     }
 
-    public void logout() throws Exception{
+    public void logout() throws Exception {
         userService.logout();
     }
 
     //TODO хз
-    public void removeAccount(User user)throws Exception{
+    public void removeAccount(User user) throws Exception {
         if (!UserDAO.isAdmin())
             throw new AccessDeniedException("User do not have permission");
         userService.removeAccount(user);

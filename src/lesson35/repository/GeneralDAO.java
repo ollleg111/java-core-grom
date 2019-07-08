@@ -1,12 +1,9 @@
 package lesson35.repository;
 
-import lesson35.exceptions.BadRequestException;
-import lesson35.exceptions.InternalServerException;
 import lesson35.model.IdEntity;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public abstract class GeneralDAO<T extends IdEntity> {
 
@@ -20,11 +17,11 @@ public abstract class GeneralDAO<T extends IdEntity> {
         return path;
     }
 
-    public abstract T mapping(String[] arr) throws InternalServerException;
+    public abstract T mapping(String[] arr) throws IOException;
 
-    public abstract String toFile(T object);
+    public abstract String toString(T object);
 
-    private void generatorId(T t) throws Exception {
+    private void generatorId(T t) throws IOException {
         boolean isTrue = true;
         while (isTrue) {
             long id = (long) (Math.random() * 1000000);
@@ -35,7 +32,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
         }
     }
 
-    public ArrayList<T> getAll() throws InternalServerException {
+    public ArrayList<T> getAll() throws IOException {
         ArrayList<T> getAll = new ArrayList<>();
 
         String line;
@@ -50,7 +47,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
         return getAll;
     }
 
-    public T findById(long id) throws Exception {
+    public T findById(long id) throws IOException {
         ArrayList<T> arrayList = getAll();
 
         if (arrayList.size() == 0)
@@ -63,18 +60,18 @@ public abstract class GeneralDAO<T extends IdEntity> {
         return null;
     }
 
-    public T find(T t) throws Exception {
-        for (T object : getAll()) {
-            if (object != null && object.equals(t)) {
-                return object;
-            }
-        }
-        return null;
-    }
+//    public T find(T t) throws Exception {
+//        for (T object : getAll()) {
+//            if (object != null && object.equals(t)) {
+//                return object;
+//            }
+//        }
+//        return null;
+//    }
 
-    public void remove(T t) throws Exception {
+    public void remove(T t) throws IOException {
         if (!isExistObject(t))
-            throw new BadRequestException("Do not have the object");
+            throw new IOException("Do not have the object");
 
         ArrayList<T> arrayList = getAll();
 
@@ -82,20 +79,20 @@ public abstract class GeneralDAO<T extends IdEntity> {
             int count = 1;
             for (T object : arrayList) {
                 if (!object.equals(t)) {
-                    bufferedWriter.append(toFile(object));
+                    bufferedWriter.append(toString(t));
 
                     if (arrayList.size() != count)
                         bufferedWriter.newLine();
                 }
                 count++;
             }
-        } catch (Exception e) {
-            System.out.println("Object with ID " + t.getId() + " wasn't deleted");
+        } catch (IOException e) {
+            System.err.println("Object with ID " + t.getId() + " wasn't deleted");
         }
 
     }
 
-    public boolean isExistObject(T t) throws Exception {
+    public boolean isExistObject(T t) throws IOException {
         if (getAll().size() == 0)
             return false;
 
@@ -106,7 +103,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
         return false;
     }
 
-    public T save(T t) throws Exception {
+    public T save(T t) throws IOException {
 
         generatorId(t);
 
@@ -117,7 +114,7 @@ public abstract class GeneralDAO<T extends IdEntity> {
             if (file.length() != 0)
                 bufferedWriter.newLine();
 
-            bufferedWriter.append(toFile(t));
+            bufferedWriter.append(toString(t));
 
         } catch (IOException e) {
             System.err.println("Object with ID " + " wasn't saved");
